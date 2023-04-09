@@ -1,1 +1,95 @@
-<p>auth works!</p>
+<div class="h-screen w-full">
+  <div class="flex justify-between">
+    <div class="bg-teal-700 w-full h-screen">1</div>
+    <div class="w-full flex justify-center items-center h-screen relative">
+      <!-- auth form  -->
+      <div class="text-center">
+        <!-- logo  -->
+        <div class="mb-4">
+          <ng-icon
+            class="text-5xl text-teal-700"
+            name="ionLeafOutline"
+          ></ng-icon>
+        </div>
+
+        <h1 class="text-3xl font-semibold">Hello, Again!</h1>
+        <p class="text-gray-500 w-2/3 mx-auto text-sm mt-2">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam quo
+          aperiam quibusdam, error sapiente hic.
+        </p>
+        <div class="my-5 w-2/4 mx-auto">
+          <!-- full name  -->
+          <div *ngIf="signup" class="flex flex-col gap-2 text-start mb-4">
+            <label for="name">Name</label>
+            <input
+              class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
+              type="text"
+              placeholder="Enter your name"
+            />
+          </div>
+          <!-- username  -->
+          <div *ngIf="signup" class="flex flex-col gap-2 text-start mb-4">
+            <label for="name">Username</label>
+            <input
+              class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
+              type="text"
+              placeholder="Enter your username"
+            />
+          </div>
+          <!-- email  -->
+          <div class="flex flex-col gap-2 text-start">
+            <label for="email">Email</label>
+            <input
+              class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
+              type="text"
+              placeholder="Enter your email address"
+            />
+          </div>
+
+          <!-- password  -->
+          <div class="flex flex-col gap-2 text-start mt-4">
+            <label for="password">Password</label>
+            <div class="relative w-full">
+              <input
+                class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md w-full"
+                [type]="passwordView ? 'text' : 'password'"
+                placeholder="Enter your password"
+              />
+              <ng-icon
+                (click)="showPassword()"
+                class="absolute right-3 top-3 text-xl cursor-pointer"
+                [name]="passwordView ? 'ionEyeOutline' : 'ionEyeOffOutline'"
+              ></ng-icon>
+            </div>
+          </div>
+          <p *ngIf="!signup" class="text-end mt-2 text-blue-800 text-base">
+            Forgot Password?
+          </p>
+          <button
+            class="py-2 bg-teal-700 rounded-md my-4 w-full text-white font-semibold"
+          >
+            {{ signup ? "Signup" : "Login" }}
+          </button>
+        </div>
+      </div>
+      <div class="absolute bottom-8">
+        <p *ngIf="!signup">
+          Don't have any account yet?
+          <span
+            class="text-blue-800 font-semibold cursor-pointer"
+            (click)="switchAuthentication()"
+            >Signup</span
+          >
+        </p>
+        <p *ngIf="signup">
+          Already have an account?
+          <span
+            class="text-blue-800 font-semibold cursor-pointer"
+            (click)="switchAuthentication()"
+            >Login</span
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
