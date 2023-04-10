@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NgIconsModule } from '@ng-icons/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import {
   ionLogIn,
   ionLeafOutline,
@@ -18,6 +19,7 @@ import { AuthComponent } from './components/auth/auth.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     NgIconsModule.withIcons({
       ionLogIn,
       ionLeafOutline,

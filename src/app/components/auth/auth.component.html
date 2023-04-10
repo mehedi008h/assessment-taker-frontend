@@ -1,5 +1,8 @@
 <div class="h-screen w-full">
-  <div class="flex justify-between">
+  <div
+    class="flex justify-between transition-all ease-in-out"
+    [ngClass]="signup ? 'flex-row-reverse' : ''"
+  >
     <div class="bg-teal-700 w-full h-screen">1</div>
     <div class="w-full flex justify-center items-center h-screen relative">
       <!-- auth form  -->
@@ -18,58 +21,177 @@
           aperiam quibusdam, error sapiente hic.
         </p>
         <div class="my-5 w-2/4 mx-auto">
-          <!-- full name  -->
-          <div *ngIf="signup" class="flex flex-col gap-2 text-start mb-4">
-            <label for="name">Name</label>
-            <input
-              class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
-              type="text"
-              placeholder="Enter your name"
-            />
-          </div>
-          <!-- username  -->
-          <div *ngIf="signup" class="flex flex-col gap-2 text-start mb-4">
-            <label for="name">Username</label>
-            <input
-              class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
-              type="text"
-              placeholder="Enter your username"
-            />
-          </div>
-          <!-- email  -->
-          <div class="flex flex-col gap-2 text-start">
-            <label for="email">Email</label>
-            <input
-              class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
-              type="text"
-              placeholder="Enter your email address"
-            />
-          </div>
-
-          <!-- password  -->
-          <div class="flex flex-col gap-2 text-start mt-4">
-            <label for="password">Password</label>
-            <div class="relative w-full">
+          <!-- login form  -->
+          <form *ngIf="!signup" [formGroup]="loginFormGroup" method="post">
+            <!-- email  -->
+            <div class="flex flex-col gap-2 text-start">
+              <label for="email">Email</label>
               <input
-                class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md w-full"
-                [type]="passwordView ? 'text' : 'password'"
-                placeholder="Enter your password"
+                class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
+                type="email"
+                placeholder="Enter your email address"
+                [ngClass]="{
+                  'is-invalid border-red-500':
+                    submittedLogin && loginFormGroup.controls['email'].errors
+                }"
+                formControlName="email"
               />
-              <ng-icon
-                (click)="showPassword()"
-                class="absolute right-3 top-3 text-xl cursor-pointer"
-                [name]="passwordView ? 'ionEyeOutline' : 'ionEyeOffOutline'"
-              ></ng-icon>
+              <div
+                *ngIf="submittedLogin && loginFormGroup.get('email')?.errors"
+                class="text-red-500 text-base"
+              >
+                <div *ngIf="loginFormGroup.get('email')!.errors?.['required']">
+                  Email is Required
+                </div>
+                <div *ngIf="loginFormGroup.get('email')!.errors?.['pattern']">
+                  Please Enter a valid Email
+                </div>
+              </div>
             </div>
-          </div>
-          <p *ngIf="!signup" class="text-end mt-2 text-blue-800 text-base">
-            Forgot Password?
-          </p>
-          <button
-            class="py-2 bg-teal-700 rounded-md my-4 w-full text-white font-semibold"
-          >
-            {{ signup ? "Signup" : "Login" }}
-          </button>
+
+            <!-- password  -->
+            <div class="flex flex-col gap-2 text-start mt-4">
+              <label for="password">Password</label>
+              <div class="relative w-full">
+                <input
+                  class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md w-full"
+                  [type]="passwordView ? 'text' : 'password'"
+                  placeholder="Enter your password"
+                  [ngClass]="{
+                    'is-invalid border-red-500':
+                      submittedLogin &&
+                      loginFormGroup.controls['password'].errors
+                  }"
+                  formControlName="password"
+                />
+                <ng-icon
+                  (click)="showPassword()"
+                  class="absolute right-3 top-3 text-xl cursor-pointer"
+                  [name]="passwordView ? 'ionEyeOutline' : 'ionEyeOffOutline'"
+                ></ng-icon>
+              </div>
+              <div
+                *ngIf="submittedLogin && loginFormGroup.get('password')?.errors"
+                class="text-red-500 text-base"
+              >
+                <div
+                  *ngIf="loginFormGroup.get('password')!.errors?.['required']"
+                >
+                  Password is Required
+                </div>
+              </div>
+            </div>
+            <p *ngIf="!signup" class="text-end mt-2 text-blue-800 text-base">
+              Forgot Password?
+            </p>
+            <button
+              type="button"
+              (click)="onLogin()"
+              class="py-2 bg-teal-700 rounded-md my-4 w-full text-white font-semibold"
+            >
+              Login
+            </button>
+          </form>
+          <!-- signup form  -->
+          <form *ngIf="signup" [formGroup]="signupFormGroup" method="post">
+            <!-- full name  -->
+            <div class="flex flex-col gap-2 text-start mb-4">
+              <label
+                for="name"
+                [ngClass]="submittedSignup && signupFormGroup.get('name')!.errors?.['required'] ? 'text-red-500' : 'text-black'"
+                >{{submittedSignup && signupFormGroup.get('name')!.errors?.['required'] ? 'Name is Required' : "Name"}}
+                <span class="text-red-500">*</span></label
+              >
+              <input
+                class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
+                type="text"
+                placeholder="Enter your name"
+                [ngClass]="{
+                  'is-invalid border-red-500':
+                    submittedSignup && signupFormGroup.controls['name'].errors
+                }"
+                formControlName="name"
+              />
+            </div>
+            <!-- username  -->
+            <div class="flex flex-col gap-2 text-start mb-4">
+              <label
+                for="username"
+                [ngClass]="submittedSignup && signupFormGroup.get('username')!.errors?.['required'] ? 'text-red-500' : 'text-black'"
+                >{{submittedSignup && signupFormGroup.get('username')!.errors?.['required'] ? 'Username is Required' : 'Username'
+
+                }}<span class="text-red-500">*</span></label
+              >
+              <input
+                class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
+                type="text"
+                placeholder="Enter your username"
+                [ngClass]="{
+                  'is-invalid border-red-500':
+                    submittedSignup &&
+                    signupFormGroup.controls['username'].errors
+                }"
+                formControlName="username"
+              />
+            </div>
+            <!-- email  -->
+            <div class="flex flex-col gap-2 text-start">
+              <label
+                for="email"
+                [ngClass]="submittedSignup && signupFormGroup.get('email')!.errors?.['required'] || signupFormGroup.get('email')!.errors?.['pattern'] ? 'text-red-500' :  'text-black'"
+                >{{submittedSignup && signupFormGroup.get('email')!.errors?.['required'] ? 'Email is Required':signupFormGroup.get('email')!.errors?.['pattern'] ? 'Please Enter a valid Email' :'Email'
+
+                }}<span class="text-red-500">*</span></label
+              >
+              <input
+                class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
+                type="text"
+                placeholder="Enter your email address"
+                [ngClass]="{
+                  'is-invalid border-red-500':
+                    submittedSignup && signupFormGroup.controls['email'].errors
+                }"
+                formControlName="email"
+              />
+            </div>
+
+            <!-- password  -->
+            <div class="flex flex-col gap-2 text-start mt-4">
+              <label
+                for="password"
+                [ngClass]="submittedSignup && signupFormGroup.get('password')!.errors?.['required'] ? 'text-red-500' : 'text-black'"
+                >{{submittedSignup && signupFormGroup.get('password')!.errors?.['required'] ? 'Password is Required' : 'Password'
+
+                }}<span class="text-red-500">*</span></label
+              >
+              <div class="relative w-full">
+                <input
+                  class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md w-full"
+                  [type]="passwordView ? 'text' : 'password'"
+                  placeholder="Enter your password"
+                  [ngClass]="{
+                    'is-invalid border-red-500':
+                      submittedSignup &&
+                      signupFormGroup.controls['password'].errors
+                  }"
+                  formControlName="password"
+                />
+                <ng-icon
+                  (click)="showPassword()"
+                  class="absolute right-3 top-3 text-xl cursor-pointer"
+                  [name]="passwordView ? 'ionEyeOutline' : 'ionEyeOffOutline'"
+                ></ng-icon>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              (click)="onRegister()"
+              class="py-2 bg-teal-700 rounded-md my-4 w-full text-white font-semibold"
+            >
+              Signup
+            </button>
+          </form>
         </div>
       </div>
       <div class="absolute bottom-8">
