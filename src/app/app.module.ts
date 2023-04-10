@@ -11,11 +11,25 @@ import {
   ionLeafOutline,
   ionEyeOutline,
   ionEyeOffOutline,
+  ionAddCircleOutline,
+  ionBarChartOutline,
+  ionHeartHalfSharp,
 } from '@ng-icons/ionicons';
+import { heroQueueList, heroUsers } from '@ng-icons/heroicons/outline';
 import { AuthComponent } from './components/auth/auth.component';
+import { SidebarComponent } from './components/admin/sidebar/sidebar.component';
+import { HomeComponent } from './components/admin/home/home.component';
+import { HeaderComponent } from './components/admin/header/header.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, AuthComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    AuthComponent,
+    SidebarComponent,
+    HomeComponent,
+    HeaderComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,6 +39,11 @@ import { AuthComponent } from './components/auth/auth.component';
       ionLeafOutline,
       ionEyeOutline,
       ionEyeOffOutline,
+      heroQueueList,
+      ionAddCircleOutline,
+      heroUsers,
+      ionBarChartOutline,
+      ionHeartHalfSharp,
     }),
   ],
   providers: [],
