@@ -14,6 +14,8 @@ import {
   ionAddCircleOutline,
   ionBarChartOutline,
   ionHeartHalfSharp,
+  ionNotificationsSharp,
+  ionChatbubblesSharp,
 } from '@ng-icons/ionicons';
 import { heroQueueList, heroUsers } from '@ng-icons/heroicons/outline';
 import { AuthComponent } from './components/auth/auth.component';
@@ -44,6 +46,8 @@ import { HeaderComponent } from './components/admin/header/header.component';
       heroUsers,
       ionBarChartOutline,
       ionHeartHalfSharp,
+      ionNotificationsSharp,
+      ionChatbubblesSharp,
     }),
   ],
   providers: [],

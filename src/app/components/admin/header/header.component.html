@@ -1,1 +1,40 @@
-<p>header works!</p>
+<div class="w-full bg-teal-600 flex">
+  <div
+    class="w-11/12 mx-auto h-14 flex justify-between items-center text-white"
+  >
+    <div>
+      <div class="text-2xl cursor-pointer font-merriweather font-bold">
+        <a routerLink="" routerLinkActive="active">
+          <ng-icon name="ionLeafOutline"></ng-icon>
+        </a>
+      </div>
+    </div>
+    <div class="flex items-center gap-5">
+      <div class="relative flex justify-center">
+        <ng-icon class="text-2xl relative" name="ionChatbubblesSharp"></ng-icon>
+        <div
+          class="absolute -top-3 left-3 h-5 w-5 bg-red-500 rounded-full flex justify-center items-center text-xs font-semibold"
+        >
+          1
+        </div>
+      </div>
+      <div class="relative flex justify-center">
+        <ng-icon class="text-2xl" name="ionNotificationsSharp"></ng-icon>
+        <div
+          class="absolute -top-3 left-3 h-5 w-5 bg-red-500 rounded-full flex justify-center items-center text-xs font-semibold"
+        >
+          3
+        </div>
+      </div>
+
+      <div class="h-10 w-10 bg-teal-700 rounded-full"></div>
+      <a
+        class="px-4 py-1 rounded-full border hover:bg-teal-500"
+        routerLink="/auth"
+        routerLinkActive="active"
+      >
+        Login ></a
+      >
+    </div>
+  </div>
+</div>
