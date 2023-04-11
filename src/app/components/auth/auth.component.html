@@ -120,6 +120,7 @@
                 [ngClass]="submittedSignup && signupFormGroup.get('username')!.errors?.['required'] ? 'text-red-500' : 'text-black'"
                 >{{submittedSignup && signupFormGroup.get('username')!.errors?.['required'] ? 'Username is Required' : 'Username'
 
+
                 }}<span class="text-red-500">*</span></label
               >
               <input
@@ -141,6 +142,7 @@
                 [ngClass]="submittedSignup && signupFormGroup.get('email')!.errors?.['required'] || signupFormGroup.get('email')!.errors?.['pattern'] ? 'text-red-500' :  'text-black'"
                 >{{submittedSignup && signupFormGroup.get('email')!.errors?.['required'] ? 'Email is Required':signupFormGroup.get('email')!.errors?.['pattern'] ? 'Please Enter a valid Email' :'Email'
 
+
                 }}<span class="text-red-500">*</span></label
               >
               <input
@@ -161,6 +163,7 @@
                 for="password"
                 [ngClass]="submittedSignup && signupFormGroup.get('password')!.errors?.['required'] ? 'text-red-500' : 'text-black'"
                 >{{submittedSignup && signupFormGroup.get('password')!.errors?.['required'] ? 'Password is Required' : 'Password'
+
 
                 }}<span class="text-red-500">*</span></label
               >

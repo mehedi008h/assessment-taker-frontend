@@ -16,12 +16,15 @@ import {
   ionHeartHalfSharp,
   ionNotificationsSharp,
   ionChatbubblesSharp,
+  ionDuplicateOutline,
+  ionAppsOutline,
 } from '@ng-icons/ionicons';
 import { heroQueueList, heroUsers } from '@ng-icons/heroicons/outline';
 import { AuthComponent } from './components/auth/auth.component';
 import { SidebarComponent } from './components/admin/sidebar/sidebar.component';
 import { HomeComponent } from './components/admin/home/home.component';
 import { HeaderComponent } from './components/admin/header/header.component';
+import { AddCategoryComponent } from './components/admin/forms/add-category/add-category.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,7 @@ import { HeaderComponent } from './components/admin/header/header.component';
     SidebarComponent,
     HomeComponent,
     HeaderComponent,
+    AddCategoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +52,8 @@ import { HeaderComponent } from './components/admin/header/header.component';
       ionHeartHalfSharp,
       ionNotificationsSharp,
       ionChatbubblesSharp,
+      ionDuplicateOutline,
+      ionAppsOutline,
     }),
   ],
   providers: [],

@@ -1,0 +1,69 @@
+<div class="flex justify-center w-full">
+  <div
+    class="border bg-gray-50 shadow-md rounded-md mt-14"
+    style="width: 450px"
+  >
+    <div class="px-2 py-2 bg-gray-200 flex justify-between items-center">
+      <h3 class="text-lg font-semibold text-teal-700">Add Category</h3>
+    </div>
+    <div class="p-3">
+      <form [formGroup]="addCategoryFormGroup" method="post">
+        <div class="flex flex-col gap-2 text-start">
+          <label for="title">Title <span class="text-red-500">*</span></label>
+          <input
+            class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
+            type="text"
+            placeholder="Enter your category title"
+            [ngClass]="{
+              'is-invalid border-red-500':
+                submitted && addCategoryFormGroup.controls['title'].errors
+            }"
+            formControlName="title"
+          />
+          <div
+            *ngIf="submitted && addCategoryFormGroup.get('title')?.errors"
+            class="text-red-500 text-base"
+          >
+            <div
+              *ngIf="addCategoryFormGroup.get('title')!.errors?.['required']"
+            >
+              Title is Required
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col gap-2 text-start mt-3">
+          <label for="description"
+            >Description <span class="text-red-500">*</span></label
+          >
+          <textarea
+            class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
+            type="text"
+            [ngClass]="{
+              'is-invalid border-red-500':
+                submitted && addCategoryFormGroup.controls['description'].errors
+            }"
+            formControlName="description"
+          >
+          </textarea>
+          <div
+            *ngIf="submitted && addCategoryFormGroup.get('description')?.errors"
+            class="text-red-500 text-base"
+          >
+            <div
+              *ngIf="addCategoryFormGroup.get('description')!.errors?.['required']"
+            >
+              Description is Required
+            </div>
+          </div>
+        </div>
+        <button
+          type="submit"
+          (click)="addCategory()"
+          class="py-2 bg-teal-700 rounded-md mt-4 w-full text-white font-semibold"
+        >
+          Save
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
