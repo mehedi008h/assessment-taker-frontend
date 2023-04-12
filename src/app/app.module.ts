@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NgIconsModule } from '@ng-icons/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {
   ionLogIn,
   ionLeafOutline,
@@ -27,6 +28,11 @@ import { HeaderComponent } from './components/admin/header/header.component';
 import { AddCategoryComponent } from './components/admin/forms/add-category/add-category.component';
 import { AddAssessmentComponent } from './components/admin/forms/add-assessment/add-assessment.component';
 import { AddQuestionComponent } from './components/admin/forms/add-question/add-question.component';
+import { AuthenticationService } from './services/authentication.service';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotificationService } from './services/notification.service';
 
 @NgModule({
   declarations: [
@@ -44,6 +50,8 @@ import { AddQuestionComponent } from './components/admin/forms/add-question/add-
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    MatSnackBarModule,
     NgIconsModule.withIcons({
       ionLogIn,
       ionLeafOutline,
@@ -59,8 +67,13 @@ import { AddQuestionComponent } from './components/admin/forms/add-question/add-
       ionDuplicateOutline,
       ionAppsOutline,
     }),
+    BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [
+    AuthenticationService,
+    NotificationService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -25,26 +25,25 @@
           <form *ngIf="!signup" [formGroup]="loginFormGroup" method="post">
             <!-- email  -->
             <div class="flex flex-col gap-2 text-start">
-              <label for="email">Email</label>
+              <label for="email">Username</label>
               <input
                 class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
-                type="email"
-                placeholder="Enter your email address"
+                type="text"
+                placeholder="Enter your username"
                 [ngClass]="{
                   'is-invalid border-red-500':
-                    submittedLogin && loginFormGroup.controls['email'].errors
+                    submittedLogin && loginFormGroup.controls['username'].errors
                 }"
-                formControlName="email"
+                formControlName="username"
               />
               <div
-                *ngIf="submittedLogin && loginFormGroup.get('email')?.errors"
+                *ngIf="submittedLogin && loginFormGroup.get('username')?.errors"
                 class="text-red-500 text-base"
               >
-                <div *ngIf="loginFormGroup.get('email')!.errors?.['required']">
-                  Email is Required
-                </div>
-                <div *ngIf="loginFormGroup.get('email')!.errors?.['pattern']">
-                  Please Enter a valid Email
+                <div
+                  *ngIf="loginFormGroup.get('username')!.errors?.['required']"
+                >
+                  Username is Required
                 </div>
               </div>
             </div>
@@ -94,31 +93,64 @@
           </form>
           <!-- signup form  -->
           <form *ngIf="signup" [formGroup]="signupFormGroup" method="post">
-            <!-- full name  -->
-            <div class="flex flex-col gap-2 text-start mb-4">
-              <label
-                for="name"
-                [ngClass]="submittedSignup && signupFormGroup.get('name')!.errors?.['required'] ? 'text-red-500' : 'text-black'"
-                >{{submittedSignup && signupFormGroup.get('name')!.errors?.['required'] ? 'Name is Required' : "Name"}}
-                <span class="text-red-500">*</span></label
-              >
-              <input
-                class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
-                type="text"
-                placeholder="Enter your name"
-                [ngClass]="{
-                  'is-invalid border-red-500':
-                    submittedSignup && signupFormGroup.controls['name'].errors
-                }"
-                formControlName="name"
-              />
+            <!-- name  -->
+            <div class="grid grid-cols-12 gap-2">
+              <!-- first name  -->
+              <div class="col-span-6">
+                <div class="flex flex-col gap-2 text-start mb-4">
+                  <label
+                    for="name"
+                    [ngClass]="submittedSignup && signupFormGroup.get('firstName')!.errors?.['required'] ? 'text-red-500' : 'text-black'"
+                    >{{submittedSignup && signupFormGroup.get('firstName')!.errors?.['required'] ? 'First Name is Required' : "First Name"}}
+                    <span class="text-red-500">*</span></label
+                  >
+                  <input
+                    class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
+                    type="text"
+                    placeholder="First name"
+                    [ngClass]="{
+                      'is-invalid border-red-500':
+                        submittedSignup &&
+                        signupFormGroup.controls['firstName'].errors
+                    }"
+                    formControlName="firstName"
+                  />
+                </div>
+              </div>
+              <!-- last name  -->
+              <div class="col-span-6">
+                <div class="flex flex-col gap-2 text-start mb-4">
+                  <label
+                    for="lastName"
+                    [ngClass]="submittedSignup && signupFormGroup.get('lastName')!.errors?.['required'] ? 'text-red-500' : 'text-black'"
+                    >{{submittedSignup && signupFormGroup.get('lastName')!.errors?.['required'] ? 'Last Name is Required' : "Last Name"}}
+                    <span class="text-red-500">*</span></label
+                  >
+                  <input
+                    class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
+                    type="text"
+                    placeholder="Enter your name"
+                    [ngClass]="{
+                      'is-invalid border-red-500':
+                        submittedSignup &&
+                        signupFormGroup.controls['lastName'].errors
+                    }"
+                    formControlName="lastName"
+                  />
+                </div>
+              </div>
             </div>
+
             <!-- username  -->
             <div class="flex flex-col gap-2 text-start mb-4">
               <label
                 for="username"
                 [ngClass]="submittedSignup && signupFormGroup.get('username')!.errors?.['required'] ? 'text-red-500' : 'text-black'"
                 >{{submittedSignup && signupFormGroup.get('username')!.errors?.['required'] ? 'Username is Required' : 'Username'
+
+
+
+
 
 
                 }}<span class="text-red-500">*</span></label
@@ -143,6 +175,9 @@
                 >{{submittedSignup && signupFormGroup.get('email')!.errors?.['required'] ? 'Email is Required':signupFormGroup.get('email')!.errors?.['pattern'] ? 'Please Enter a valid Email' :'Email'
 
 
+
+
+
                 }}<span class="text-red-500">*</span></label
               >
               <input
@@ -163,6 +198,9 @@
                 for="password"
                 [ngClass]="submittedSignup && signupFormGroup.get('password')!.errors?.['required'] ? 'text-red-500' : 'text-black'"
                 >{{submittedSignup && signupFormGroup.get('password')!.errors?.['required'] ? 'Password is Required' : 'Password'
+
+
+
 
 
                 }}<span class="text-red-500">*</span></label
@@ -186,13 +224,12 @@
                 ></ng-icon>
               </div>
             </div>
-
             <button
               type="button"
               (click)="onRegister()"
               class="py-2 bg-teal-700 rounded-md my-4 w-full text-white font-semibold"
             >
-              Signup
+              {{ showLoading ? "Loading..." : "Signup" }}
             </button>
           </form>
         </div>

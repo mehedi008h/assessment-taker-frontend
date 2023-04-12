@@ -8,21 +8,21 @@
   <div class="ps-2 flex flex-col gap-2 transition-all">
     <a
       routerLink="/admin"
-      routerLinkActive="active"
+      routerLinkActive="active_sidebar"
       class="flex items-center gap-3 px-4 py-2 hover:bg-white rounded-l-full hover:text-teal-600"
     >
       <ng-icon class="text-xl" name="ionLeafOutline"></ng-icon> Assessment Home
     </a>
     <a
       routerLink=""
-      routerLinkActive="active"
+      routerLinkActive="active_sidebar"
       class="flex items-center gap-3 px-4 py-2 hover:bg-white rounded-l-full hover:text-teal-600"
     >
       <ng-icon class="text-xl" name="ionAppsOutline"></ng-icon> All Category
     </a>
     <a
       routerLink="/admin/add-category"
-      routerLinkActive="active"
+      routerLinkActive="active_sidebar"
       class="flex items-center gap-3 px-4 py-2 hover:bg-white rounded-l-full hover:text-teal-600"
     >
       <ng-icon class="text-xl" name="ionDuplicateOutline"></ng-icon> Add
@@ -30,14 +30,14 @@
     </a>
     <a
       routerLink=""
-      routerLinkActive="active"
+      routerLinkActive="active_sidebar"
       class="flex items-center gap-3 px-4 py-2 hover:bg-white rounded-l-full hover:text-teal-600"
     >
       <ng-icon class="text-xl" name="heroQueueList"></ng-icon> All Assessment
     </a>
     <a
       routerLink="/admin/add-assessment"
-      routerLinkActive="active"
+      routerLinkActive="active_sidebar"
       class="flex items-center gap-3 px-4 py-2 hover:bg-white rounded-l-full hover:text-teal-600"
     >
       <ng-icon class="text-xl" name="ionAddCircleOutline"></ng-icon> Add
@@ -45,32 +45,40 @@
     </a>
     <a
       routerLink=""
-      routerLinkActive="active"
+      routerLinkActive="active_sidebar"
       class="flex items-center gap-3 px-4 py-2 hover:bg-white rounded-l-full hover:text-teal-600"
     >
       <ng-icon class="text-xl" name="heroUsers"></ng-icon> All Users
     </a>
     <a
       routerLink=""
-      routerLinkActive="active"
+      routerLinkActive="active_sidebar"
       class="flex items-center gap-3 px-4 py-2 hover:bg-white rounded-l-full hover:text-teal-600"
     >
       <ng-icon class="text-xl" name="ionBarChartOutline"></ng-icon> Leaderboard
     </a>
     <a
       routerLink=""
-      routerLinkActive="active"
+      routerLinkActive="active_sidebar"
       class="flex items-center gap-3 px-4 py-2 hover:bg-white rounded-l-full hover:text-teal-600"
     >
       <ng-icon class="text-xl" name="ionHeartHalfSharp"></ng-icon> System Health
     </a>
   </div>
   <div class="absolute bottom-4 px-3 w-full">
-    <div class="border border-gray-400 p-3 w-full rounded-md flex gap-3">
-      <div class="h-14 w-14 bg-teal-700 rounded-full"></div>
+    <div class="border border-gray-400 p-2 w-full rounded-md flex gap-2">
+      <div class="h-12 w-12 rounded-full">
+        <img
+          class="w-full h-full object-cover"
+          src="{{ user.profileImageUrl }}"
+          alt=""
+        />
+      </div>
       <div>
-        <h3 class="text-lg font-semibold">Mehedi Hasan</h3>
-        <p class="text-sm text-gray-600">Admin</p>
+        <h3 class="text-base font-semibold">
+          {{ user.firstName }} {{ user.lastName }}
+        </h3>
+        <p class="text-sm text-gray-600">{{ user.role }}</p>
       </div>
     </div>
   </div>
