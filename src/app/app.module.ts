@@ -25,6 +25,8 @@ import { SidebarComponent } from './components/admin/sidebar/sidebar.component';
 import { HomeComponent } from './components/admin/home/home.component';
 import { HeaderComponent } from './components/admin/header/header.component';
 import { AddCategoryComponent } from './components/admin/forms/add-category/add-category.component';
+import { AddAssessmentComponent } from './components/admin/forms/add-assessment/add-assessment.component';
+import { AddQuestionComponent } from './components/admin/forms/add-question/add-question.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { AddCategoryComponent } from './components/admin/forms/add-category/add-
     HomeComponent,
     HeaderComponent,
     AddCategoryComponent,
+    AddAssessmentComponent,
+    AddQuestionComponent,
   ],
   imports: [
     BrowserModule,
