@@ -33,6 +33,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificationService } from './services/notification.service';
+import { CategoriesComponent } from './components/admin/categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { NotificationService } from './services/notification.service';
     AddCategoryComponent,
     AddAssessmentComponent,
     AddQuestionComponent,
+    CategoriesComponent,
   ],
   imports: [
     BrowserModule,
