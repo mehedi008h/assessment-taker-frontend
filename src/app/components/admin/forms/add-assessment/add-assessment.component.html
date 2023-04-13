@@ -1,7 +1,7 @@
 <div class="flex justify-center w-full">
   <div
     class="border bg-gray-50 shadow-md rounded-md mt-14"
-    style="width: 450px"
+    style="width: 550px"
   >
     <div class="px-2 py-2 bg-gray-200 flex justify-between items-center">
       <h3 class="text-lg font-semibold text-teal-700">Add Assessment</h3>
@@ -28,6 +28,105 @@
               *ngIf="addAssessmentFormGroup.get('title')!.errors?.['required']"
             >
               Title is Required
+            </div>
+          </div>
+        </div>
+        <!-- time & attemp  -->
+        <div class="grid grid-cols-12 gap-3 mt-3">
+          <div class="col-span-6">
+            <div class="flex flex-col gap-2 text-start">
+              <label for="title"
+                >Time <span class="text-red-500">*</span></label
+              >
+              <input
+                class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
+                type="number"
+                placeholder="Enter your assessment time"
+                [ngClass]="{
+                  'is-invalid border-red-500':
+                    submitted && addAssessmentFormGroup.controls['time'].errors
+                }"
+                formControlName="time"
+              />
+              <div
+                *ngIf="submitted && addAssessmentFormGroup.get('time')?.errors"
+                class="text-red-500 text-base"
+              >
+                <div
+                  *ngIf="addAssessmentFormGroup.get('time')!.errors?.['required']"
+                >
+                  Time is Required
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- attempt  -->
+          <div class="col-span-6">
+            <div class="flex flex-col gap-2 text-start">
+              <label for="title"
+                >Attempt <span class="text-red-500">*</span></label
+              >
+              <select
+                class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
+                placeholder="Enter your assessment attempt"
+                [ngClass]="{
+                  'is-invalid border-red-500':
+                    submitted &&
+                    addAssessmentFormGroup.controls['attempt'].errors
+                }"
+                formControlName="attempt"
+              >
+                <option [ngValue]="null">Choose attempt number</option>
+                <option [ngValue]="1">1</option>
+                <option [ngValue]="2">2</option>
+                <option [ngValue]="3">3</option>
+                <option [ngValue]="4">4</option>
+                <option [ngValue]="5">5</option>
+              </select>
+
+              <div
+                *ngIf="
+                  submitted && addAssessmentFormGroup.get('attempt')?.errors
+                "
+                class="text-red-500 text-base"
+              >
+                <div
+                  *ngIf="addAssessmentFormGroup.get('attempt')!.errors?.['required']"
+                >
+                  Attempt is Required
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- category  -->
+        <div class="flex flex-col gap-2 text-start mt-3">
+          <label for="title"
+            >Category <span class="text-red-500">*</span></label
+          >
+          <select
+            class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
+            placeholder="Enter your assessment attempt"
+            [ngClass]="{
+              'is-invalid border-red-500':
+                submitted && addAssessmentFormGroup.controls['category'].errors
+            }"
+            formControlName="category"
+          >
+            <option [ngValue]="null">Choose category</option>
+            <option *ngFor="let c of categories" [ngValue]="c">
+              {{ c.title }}
+            </option>
+          </select>
+
+          <div
+            *ngIf="submitted && addAssessmentFormGroup.get('category')?.errors"
+            class="text-red-500 text-base"
+          >
+            <div
+              *ngIf="addAssessmentFormGroup.get('category')!.errors?.['required']"
+            >
+              Category is Required
             </div>
           </div>
         </div>

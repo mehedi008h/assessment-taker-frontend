@@ -26,6 +26,7 @@ export class CategoriesComponent implements OnInit {
     this.getCategories(true);
   }
 
+  // get categories
   public getCategories(showNotification: boolean): void {
     this.refreshing = true;
     this.subscriptions.push(

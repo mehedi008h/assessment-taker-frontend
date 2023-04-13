@@ -34,6 +34,7 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificationService } from './services/notification.service';
 import { CategoriesComponent } from './components/admin/categories/categories.component';
+import { AssessmentsComponent } from './components/admin/assessments/assessments.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { CategoriesComponent } from './components/admin/categories/categories.co
     AddAssessmentComponent,
     AddQuestionComponent,
     CategoriesComponent,
+    AssessmentsComponent,
   ],
   imports: [
     BrowserModule,

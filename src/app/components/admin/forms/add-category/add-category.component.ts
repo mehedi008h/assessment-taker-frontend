@@ -49,6 +49,5 @@ export class AddCategoryComponent implements OnInit {
           }
         )
     );
-    console.log(this.addCategoryFormGroup.value);
   }
 }

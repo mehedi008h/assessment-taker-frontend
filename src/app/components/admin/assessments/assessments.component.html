@@ -1,0 +1,70 @@
+<ng-container
+  *ngIf="assessments$ | async as listAssessment; else failureOrLoading"
+>
+  <div class="my-5 px-3">
+    <div *ngIf="searchFormGroup" class="flex justify-between items-center">
+      <div>
+        <form [formGroup]="searchFormGroup" (ngSubmit)="getAssessments()">
+          <div
+            class="border border-gray-400 focus:border-teal-500 rounded-full w-96 flex items-center"
+          >
+            <input
+              class="outline-none px-2 py-2 rounded-full w-full"
+              type="text"
+              placeholder="Search ..."
+              formControlName="keyword"
+            />
+            <button
+              type="submit"
+              class="px-3 py-2 bg-teal-600 rounded-r-full text-white"
+            >
+              Search
+            </button>
+          </div>
+        </form>
+      </div>
+      <div>2</div>
+    </div>
+    <div class="grid grid-cols-12 gap-3 mt-5">
+      <div
+        *ngFor="let a of listAssessment?.content"
+        class="col-span-4 border rounded-md p-3 bg-gray-50"
+      >
+        <div class="flex justify-between items-center pb-2">
+          <div class="text-sm text-teal-600">#{{ a.assessmentIdentifier }}</div>
+          <div class="flex gap-2">
+            <button
+              class="bg-yellow-600 text-white py-1 px-3 rounded-full font-semibold text-xs"
+            >
+              Edit
+            </button>
+            <button
+              class="bg-red-600 text-white py-1 px-3 rounded-full font-semibold text-xs"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+        <hr />
+        <div class="mt-2">
+          <h3 class="text-lg font-semibold">{{ a.title }}</h3>
+          <p class="text-gray-600 text-sm mt-1">{{ a.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #failureOrLoading>
+  <ng-container *ngIf="errorMessage; else loading">
+    <div class="text-red-500">
+      {{ errorMessage }}
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <div class="shadow">
+      <span><i class="fa-solid fa-rotate fa-spin"></i></span> &nbsp;
+      <span>Processing...</span>
+    </div>
+  </ng-template>
+</ng-template>
