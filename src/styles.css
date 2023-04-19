@@ -12,3 +12,16 @@ body {
   margin: 0;
   font-family: "Poppins", sans-serif;
 }
+
+.loader {
+  background: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 5px 10px;
+  border-radius: 100px;
+  user-select: none;
+  cursor: pointer;
+  z-index: 9000;
+}

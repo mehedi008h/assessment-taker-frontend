@@ -49,4 +49,9 @@ export class AssessmentsComponent implements OnInit {
         })
       );
   }
+
+  gotoPage(page: number) {
+    this.currentPage = page;
+    this.getAssessments();
+  }
 }

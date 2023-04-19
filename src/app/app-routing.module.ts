@@ -6,6 +6,7 @@ import { AddCategoryComponent } from './components/admin/forms/add-category/add-
 import { AddAssessmentComponent } from './components/admin/forms/add-assessment/add-assessment.component';
 import { CategoriesComponent } from './components/admin/categories/categories.component';
 import { AssessmentsComponent } from './components/admin/assessments/assessments.component';
+import { AssessmentDetailsComponent } from './components/admin/assessment-details/assessment-details.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: 'assessments',
         component: AssessmentsComponent,
+      },
+      {
+        path: 'assessments/:id',
+        component: AssessmentDetailsComponent,
       },
     ],
   },

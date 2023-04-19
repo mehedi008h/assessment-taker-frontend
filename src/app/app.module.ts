@@ -19,8 +19,14 @@ import {
   ionChatbubblesSharp,
   ionDuplicateOutline,
   ionAppsOutline,
+  ionTimerOutline,
+  ionBowlingBallOutline,
 } from '@ng-icons/ionicons';
-import { heroQueueList, heroUsers } from '@ng-icons/heroicons/outline';
+import {
+  heroQueueList,
+  heroUsers,
+  heroUserGroup,
+} from '@ng-icons/heroicons/outline';
 import { AuthComponent } from './components/auth/auth.component';
 import { SidebarComponent } from './components/admin/sidebar/sidebar.component';
 import { HomeComponent } from './components/admin/home/home.component';
@@ -35,6 +41,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificationService } from './services/notification.service';
 import { CategoriesComponent } from './components/admin/categories/categories.component';
 import { AssessmentsComponent } from './components/admin/assessments/assessments.component';
+import { AssessmentDetailsComponent } from './components/admin/assessment-details/assessment-details.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +56,7 @@ import { AssessmentsComponent } from './components/admin/assessments/assessments
     AddQuestionComponent,
     CategoriesComponent,
     AssessmentsComponent,
+    AssessmentDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,6 +78,9 @@ import { AssessmentsComponent } from './components/admin/assessments/assessments
       ionChatbubblesSharp,
       ionDuplicateOutline,
       ionAppsOutline,
+      ionTimerOutline,
+      ionBowlingBallOutline,
+      heroUserGroup,
     }),
     BrowserAnimationsModule,
   ],
