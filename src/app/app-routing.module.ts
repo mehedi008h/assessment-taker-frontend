@@ -7,6 +7,7 @@ import { AddAssessmentComponent } from './components/admin/forms/add-assessment/
 import { CategoriesComponent } from './components/admin/categories/categories.component';
 import { AssessmentsComponent } from './components/admin/assessments/assessments.component';
 import { AssessmentDetailsComponent } from './components/admin/assessment-details/assessment-details.component';
+import { AddQuestionComponent } from './components/admin/forms/add-question/add-question.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
       {
         path: 'assessments/:id',
         component: AssessmentDetailsComponent,
+      },
+      {
+        path: 'assessments/:id/add-question',
+        component: AddQuestionComponent,
       },
     ],
   },

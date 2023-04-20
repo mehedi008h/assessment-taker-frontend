@@ -15,8 +15,14 @@ export class AddQuestionComponent implements OnInit {
   ngOnInit(): void {
     // assessment form validation
     this.addQuestionFormGroup = this.fb.group({
-      title: ['', Validators.required],
-      description: ['', Validators.required],
+      content: ['', Validators.required],
+      option1: ['', Validators.required],
+      option2: ['', Validators.required],
+      option3: ['', Validators.required],
+      option4: ['', Validators.required],
+      option5: [''],
+      mark: ['', Validators.required],
+      questionAnswer: ['', Validators.required],
     });
   }
 

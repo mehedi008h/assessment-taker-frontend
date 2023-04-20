@@ -1,61 +1,255 @@
 <div class="flex justify-center w-full">
   <div
     class="border bg-gray-50 shadow-md rounded-md mt-14"
-    style="width: 450px"
+    style="width: 550px"
   >
     <div class="px-2 py-2 bg-gray-200 flex justify-between items-center">
       <h3 class="text-lg font-semibold text-teal-700">Add Question</h3>
     </div>
     <div class="p-3">
       <form [formGroup]="addQuestionFormGroup" method="post">
+        <!-- content  -->
         <div class="flex flex-col gap-2 text-start">
-          <label for="title">Title <span class="text-red-500">*</span></label>
-          <input
-            class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
-            type="text"
-            placeholder="Enter your category title"
-            [ngClass]="{
-              'is-invalid border-red-500':
-                submitted && addQuestionFormGroup.controls['title'].errors
-            }"
-            formControlName="title"
-          />
-          <div
-            *ngIf="submitted && addQuestionFormGroup.get('title')?.errors"
-            class="text-red-500 text-base"
-          >
-            <div
-              *ngIf="addQuestionFormGroup.get('title')!.errors?.['required']"
-            >
-              Title is Required
-            </div>
-          </div>
-        </div>
-        <div class="flex flex-col gap-2 text-start mt-3">
           <label for="description"
-            >Description <span class="text-red-500">*</span></label
+            >Content <span class="text-red-500">*</span></label
           >
           <textarea
             class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
             type="text"
             [ngClass]="{
               'is-invalid border-red-500':
-                submitted && addQuestionFormGroup.controls['description'].errors
+                submitted && addQuestionFormGroup.controls['content'].errors
             }"
-            formControlName="description"
+            formControlName="content"
           >
           </textarea>
           <div
-            *ngIf="submitted && addQuestionFormGroup.get('description')?.errors"
+            *ngIf="submitted && addQuestionFormGroup.get('content')?.errors"
             class="text-red-500 text-base"
           >
             <div
-              *ngIf="addQuestionFormGroup.get('description')!.errors?.['required']"
+              *ngIf="addQuestionFormGroup.get('content')!.errors?.['required']"
             >
-              Description is Required
+              Content is Required
             </div>
           </div>
         </div>
+        <!-- option 1 & 2  -->
+        <div class="grid grid-cols-12 gap-3 mt-3">
+          <div class="col-span-6">
+            <!-- option 1  -->
+            <div class="flex flex-col gap-2 text-start">
+              <label for="title"
+                >Option 1 <span class="text-red-500">*</span></label
+              >
+              <input
+                class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
+                type="text"
+                placeholder="Enter your question option 1"
+                [ngClass]="{
+                  'is-invalid border-red-500':
+                    submitted && addQuestionFormGroup.controls['option1'].errors
+                }"
+                formControlName="option1"
+              />
+              <div
+                *ngIf="submitted && addQuestionFormGroup.get('option1')?.errors"
+                class="text-red-500 text-base"
+              >
+                <div
+                  *ngIf="addQuestionFormGroup.get('option1')!.errors?.['required']"
+                >
+                  Option 1 is Required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-span-6">
+            <!-- option 2  -->
+            <div class="flex flex-col gap-2 text-start">
+              <label for="title"
+                >Option 2 <span class="text-red-500">*</span></label
+              >
+              <input
+                class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
+                type="text"
+                placeholder="Enter your question option 2"
+                [ngClass]="{
+                  'is-invalid border-red-500':
+                    submitted && addQuestionFormGroup.controls['option2'].errors
+                }"
+                formControlName="option2"
+              />
+              <div
+                *ngIf="submitted && addQuestionFormGroup.get('option2')?.errors"
+                class="text-red-500 text-base"
+              >
+                <div
+                  *ngIf="addQuestionFormGroup.get('option2')!.errors?.['required']"
+                >
+                  Option 2 is Required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-span-6">
+            <!-- option 3  -->
+            <div class="flex flex-col gap-2 text-start">
+              <label for="title"
+                >Option 3 <span class="text-red-500">*</span></label
+              >
+              <input
+                class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
+                type="text"
+                placeholder="Enter your question option 3"
+                [ngClass]="{
+                  'is-invalid border-red-500':
+                    submitted && addQuestionFormGroup.controls['option3'].errors
+                }"
+                formControlName="option3"
+              />
+              <div
+                *ngIf="submitted && addQuestionFormGroup.get('option3')?.errors"
+                class="text-red-500 text-base"
+              >
+                <div
+                  *ngIf="addQuestionFormGroup.get('option3')!.errors?.['required']"
+                >
+                  Option 3 is Required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-span-6">
+            <!-- option 4  -->
+            <div class="flex flex-col gap-2 text-start">
+              <label for="title"
+                >Option 4 <span class="text-red-500">*</span></label
+              >
+              <input
+                class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
+                type="text"
+                placeholder="Enter your question option 4"
+                [ngClass]="{
+                  'is-invalid border-red-500':
+                    submitted && addQuestionFormGroup.controls['option4'].errors
+                }"
+                formControlName="option4"
+              />
+              <div
+                *ngIf="submitted && addQuestionFormGroup.get('option4')?.errors"
+                class="text-red-500 text-base"
+              >
+                <div
+                  *ngIf="addQuestionFormGroup.get('option4')!.errors?.['required']"
+                >
+                  Option 4 is Required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-span-6">
+            <!-- option 5  -->
+            <div class="flex flex-col gap-2 text-start">
+              <label for="title">Option 5 </label>
+              <input
+                class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
+                type="text"
+                placeholder="Enter your question option 5"
+                formControlName="option5"
+              />
+            </div>
+          </div>
+          <div class="col-span-6">
+            <!-- mark  -->
+            <div class="flex flex-col gap-2 text-start">
+              <label for="title"
+                >Question Mark <span class="text-red-500">*</span></label
+              >
+              <input
+                class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
+                type="number"
+                placeholder="Enter your question mark"
+                [ngClass]="{
+                  'is-invalid border-red-500':
+                    submitted && addQuestionFormGroup.controls['mark'].errors
+                }"
+                formControlName="mark"
+              />
+              <div
+                *ngIf="submitted && addQuestionFormGroup.get('mark')?.errors"
+                class="text-red-500 text-base"
+              >
+                <div
+                  *ngIf="addQuestionFormGroup.get('mark')!.errors?.['required']"
+                >
+                  Question mark is Required
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- question answare  -->
+        <div class="flex flex-col gap-2 text-start mt-3">
+          <label for="title"
+            >Question Answer <span class="text-red-500">*</span></label
+          >
+          <select
+            class="outline-none border border-gray-400 focus:border-teal-500 px-2 py-2 rounded-md"
+            [ngClass]="{
+              'is-invalid border-red-500':
+                submitted &&
+                addQuestionFormGroup.controls['questionAnswer'].errors
+            }"
+            formControlName="questionAnswer"
+          >
+            <option [ngValue]="null">Choose Question Answer</option>
+            <option
+              *ngIf="addQuestionFormGroup.value.option1"
+              [ngValue]="addQuestionFormGroup.value.option1"
+            >
+              {{ addQuestionFormGroup.value.option1 }}
+            </option>
+            <option
+              *ngIf="addQuestionFormGroup.value.option2"
+              [ngValue]="addQuestionFormGroup.value.option2"
+            >
+              {{ addQuestionFormGroup.value.option2 }}
+            </option>
+            <option
+              *ngIf="addQuestionFormGroup.value.option3"
+              [ngValue]="addQuestionFormGroup.value.option3"
+            >
+              {{ addQuestionFormGroup.value.option3 }}
+            </option>
+            <option
+              *ngIf="addQuestionFormGroup.value.option4"
+              [ngValue]="addQuestionFormGroup.value.option4"
+            >
+              {{ addQuestionFormGroup.value.option4 }}
+            </option>
+            <option
+              *ngIf="addQuestionFormGroup.value.option5"
+              [ngValue]="addQuestionFormGroup.value.option5"
+            >
+              {{ addQuestionFormGroup.value.option5 }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              submitted && addQuestionFormGroup.get('questionAnswer')?.errors
+            "
+            class="text-red-500 text-base"
+          >
+            <div
+              *ngIf="addQuestionFormGroup.get('questionAnswer')!.errors?.['required']"
+            >
+              Question Answer is Required
+            </div>
+          </div>
+        </div>
+
         <button
           type="submit"
           (click)="addQuestion()"

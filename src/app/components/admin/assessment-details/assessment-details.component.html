@@ -11,6 +11,7 @@
           perspiciatis ducimus! Optio, ab.
         </p>
         <div class="flex justify-between w-2/4 gap-4">
+          <!-- first column  -->
           <div class="flex flex-col gap-3 mt-5">
             <div class="flex gap-2 items-center">
               <ng-icon
@@ -34,7 +35,7 @@
               <div class="text-gray-100">1 times</div>
             </div>
           </div>
-
+          <!-- second column  -->
           <div class="flex flex-col gap-3 mt-5">
             <div class="flex gap-2 items-center">
               <ng-icon
@@ -60,11 +61,13 @@
           </div>
         </div>
         <div class="mt-4">
-          <button
+          <a
+            [routerLink]="['/admin/assessments/' + id + '/add-question']"
+            routerLinkActive="active_sidebar"
             class="bg-teal-500 px-4 py-1 rounded-full font-semibold text-white"
           >
             Add Question
-          </button>
+          </a>
         </div>
       </div>
     </div>
