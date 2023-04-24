@@ -1,4 +1,8 @@
+import { Category } from './category.model';
+import { Question } from './question.model';
+
 export interface Assessment {
+  id: number;
   assessmentIdentifier: string;
   title: string;
   time: string;
@@ -7,5 +11,6 @@ export interface Assessment {
   imageUrl: string;
   active: boolean;
   totalTaken: number;
-  category: string;
+  category: Category;
+  questions: Question[];
 }

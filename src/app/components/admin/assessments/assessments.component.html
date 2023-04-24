@@ -47,7 +47,11 @@
         </div>
         <hr />
         <div class="mt-2">
-          <h3 class="text-lg font-semibold">{{ a.title }}</h3>
+          <a
+            [routerLink]="'/admin/assessments/' + a.assessmentIdentifier"
+            class="text-lg font-semibold"
+            >{{ a.title }}</a
+          >
           <p class="text-gray-600 text-sm mt-1">{{ a.description }}</p>
         </div>
       </div>

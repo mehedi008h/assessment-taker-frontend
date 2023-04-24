@@ -1,142 +1,205 @@
-<div class="p-3">
-  <!-- assessment description  -->
-  <div class="bg-header p-2 rounded-md">
-    <div class="w-full flex gap-3">
-      <div class="w-80 rounded-md bg-white"></div>
-      <div class="w-11/12">
-        <h1 class="text-xl font-semibold text-white">Title</h1>
-        <p class="text-gray-200 text-sm mt-2">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
-          recusandae repudiandae molestias vero laudantium delectus nam
-          perspiciatis ducimus! Optio, ab.
-        </p>
-        <div class="flex justify-between w-2/4 gap-4">
-          <!-- first column  -->
-          <div class="flex flex-col gap-3 mt-5">
-            <div class="flex gap-2 items-center">
-              <ng-icon
-                class="text-2xl text-white font-extrabold"
-                name="ionTimerOutline"
-              ></ng-icon>
-              <div class="text-gray-100">120 minute</div>
+<ng-container *ngIf="assessment; else failureOrLoading">
+  <div class="p-3">
+    <!-- assessment description  -->
+    <div class="bg-header p-2 rounded-md">
+      <div class="w-full flex gap-3">
+        <div class="w-80 rounded-md bg-white"></div>
+        <div class="w-11/12">
+          <h1 class="text-xl font-semibold text-white">
+            {{ assessment.title }}
+          </h1>
+          <p class="text-gray-200 text-sm mt-2">
+            {{ assessment.description }}
+          </p>
+          <div class="flex justify-between w-2/4 gap-4">
+            <!-- first column  -->
+            <div class="flex flex-col gap-3 mt-5">
+              <div class="flex gap-2 items-center">
+                <ng-icon
+                  class="text-2xl text-white font-extrabold"
+                  name="ionTimerOutline"
+                ></ng-icon>
+                <div class="text-gray-100">{{ assessment.time }} minute</div>
+              </div>
+              <div class="flex gap-2 items-center">
+                <ng-icon
+                  class="text-2xl text-white font-extrabold"
+                  name="ionBowlingBallOutline"
+                ></ng-icon>
+                <div class="text-gray-100">{{ assessment.attempt }} times</div>
+              </div>
+              <div class="flex gap-2 items-center">
+                <ng-icon
+                  class="text-2xl text-white font-extrabold"
+                  name="heroUserGroup"
+                ></ng-icon>
+                <div class="text-gray-100">
+                  {{ assessment.totalTaken }} user
+                </div>
+              </div>
             </div>
-            <div class="flex gap-2 items-center">
-              <ng-icon
-                class="text-2xl text-white font-extrabold"
-                name="ionBowlingBallOutline"
-              ></ng-icon>
-              <div class="text-gray-100">1 times</div>
-            </div>
-            <div class="flex gap-2 items-center">
-              <ng-icon
-                class="text-2xl text-white font-extrabold"
-                name="heroUserGroup"
-              ></ng-icon>
-              <div class="text-gray-100">1 times</div>
+            <!-- second column  -->
+            <div class="flex flex-col gap-3 mt-5">
+              <div class="flex gap-2 items-center">
+                <ng-icon
+                  class="text-2xl text-white font-extrabold"
+                  name="ionTimerOutline"
+                ></ng-icon>
+                <div class="text-gray-100">
+                  Category : {{ assessment.category.title }}
+                </div>
+              </div>
+              <div class="flex gap-2 items-center">
+                <ng-icon
+                  class="text-2xl text-white font-extrabold"
+                  name="ionBowlingBallOutline"
+                ></ng-icon>
+                <div class="text-gray-100">No of question :</div>
+              </div>
+              <div class="flex gap-2 items-center">
+                <ng-icon
+                  class="text-2xl text-white font-extrabold"
+                  name="heroUserGroup"
+                ></ng-icon>
+                <div
+                  [ngClass]="
+                    assessment.active ? 'text-gray-100' : 'text-red-500'
+                  "
+                >
+                  {{ assessment.active ? "Active" : "Deactive" }}
+                </div>
+              </div>
             </div>
           </div>
-          <!-- second column  -->
-          <div class="flex flex-col gap-3 mt-5">
-            <div class="flex gap-2 items-center">
-              <ng-icon
-                class="text-2xl text-white font-extrabold"
-                name="ionTimerOutline"
-              ></ng-icon>
-              <div class="text-gray-100">Category</div>
-            </div>
-            <div class="flex gap-2 items-center">
-              <ng-icon
-                class="text-2xl text-white font-extrabold"
-                name="ionBowlingBallOutline"
-              ></ng-icon>
-              <div class="text-gray-100">No of question</div>
-            </div>
-            <div class="flex gap-2 items-center">
-              <ng-icon
-                class="text-2xl text-white font-extrabold"
-                name="heroUserGroup"
-              ></ng-icon>
-              <div class="text-gray-100">Active</div>
-            </div>
+          <div class="mt-4 mb-2">
+            <a
+              [routerLink]="[
+                '/admin/assessments/' +
+                  assessment.assessmentIdentifier +
+                  '/add-question'
+              ]"
+              routerLinkActive="active_sidebar"
+              class="bg-teal-500 px-4 py-1 rounded-full font-semibold text-white"
+            >
+              Add Question
+            </a>
           </div>
         </div>
-        <div class="mt-4">
-          <a
-            [routerLink]="['/admin/assessments/' + id + '/add-question']"
-            routerLinkActive="active_sidebar"
-            class="bg-teal-500 px-4 py-1 rounded-full font-semibold text-white"
+      </div>
+    </div>
+
+    <!-- questions section -->
+    <!-- table title  -->
+    <div class="bg-gray-100 rounded-md p-3 mt-4">
+      <div class="grid grid-cols-12 gap-1">
+        <div
+          class="col-span-2 border-r border-gray-300 ps-1 text-base font-semibold"
+        >
+          Identifier
+        </div>
+        <div
+          class="col-span-5 border-r border-gray-300 px-1 text-base font-semibold flex justify-between items-center"
+        >
+          <h3>Title</h3>
+          <!-- Search  -->
+          <div *ngIf="searchFormGroup">
+            <form [formGroup]="searchFormGroup" (ngSubmit)="getQuestions()">
+              <div
+                class="border border-gray-400 focus:border-teal-500 rounded-full flex items-center"
+              >
+                <input
+                  class="outline-none px-2 py-1 rounded-full text-sm font-normal"
+                  type="text"
+                  placeholder="Search ..."
+                  formControlName="keyword"
+                />
+                <button
+                  type="submit"
+                  class="px-3 py-2 bg-teal-500 rounded-r-full text-white flex justify-center items-center"
+                >
+                  <ng-icon name="ionSearch"></ng-icon>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div
+          class="col-span-2 border-r border-gray-300 ps-1 text-base font-semibold"
+        >
+          Mark
+        </div>
+        <div class="col-span-3 ps-1 text-base font-semibold">Action</div>
+      </div>
+    </div>
+
+    <!-- table content  -->
+    <div *ngIf="questions$ | async as listQuestions">
+      <div class="bg-gray-100 rounded-md p-3 my-2">
+        <div
+          *ngFor="let q of listQuestions?.content"
+          class="grid grid-cols-12 gap-1 border-b py-2"
+        >
+          <div
+            class="col-span-2 border-r border-gray-300 ps-1 text-base font-semibold text-teal-600"
           >
-            Add Question
-          </a>
+            {{ q.questionIdentifier }}
+          </div>
+          <div class="col-span-5 border-r border-gray-300 ps-1 text-base">
+            {{ q.content }}
+          </div>
+          <div
+            class="col-span-2 border-r border-gray-300 ps-1 text-base font-semibold"
+          >
+            {{ q.mark }}
+          </div>
+          <div class="col-span-3 ps-1 text-base flex gap-2">
+            <button
+              class="bg-teal-500 px-4 py-1 rounded-full font-semibold text-sm text-white"
+            >
+              View
+            </button>
+            <button
+              class="bg-orange-500 px-4 py-1 rounded-full font-semibold text-sm text-white"
+            >
+              Update
+            </button>
+            <button
+              class="bg-red-500 px-4 py-1 rounded-full font-semibold text-sm text-white"
+            >
+              Delete
+            </button>
+          </div>
         </div>
       </div>
+      <ul class="flex justify-center my-5">
+        <li
+          *ngFor="
+            let item of [].constructor(listQuestions.totalPages);
+            let page = index
+          "
+        >
+          <a
+            [ngClass]="page == currentPage ? 'bg-teal-500' : 'bg-gray-600'"
+            (click)="gotoPage(page)"
+            class="text-white h-8 w-8 flex justify-center items-center rounded-full font-semibold text-xs"
+            >{{ page }}</a
+          >
+        </li>
+      </ul>
     </div>
   </div>
+</ng-container>
 
-  <!-- questions section -->
-  <!-- table title  -->
-  <div class="bg-gray-100 rounded-md p-3 mt-4">
-    <div class="grid grid-cols-12 gap-1">
-      <div
-        class="col-span-2 border-r border-gray-300 ps-1 text-base font-semibold"
-      >
-        Identifier
-      </div>
-      <div
-        class="col-span-5 border-r border-gray-300 ps-1 text-base font-semibold"
-      >
-        Title
-      </div>
-      <div
-        class="col-span-2 border-r border-gray-300 ps-1 text-base font-semibold"
-      >
-        Mark
-      </div>
-      <div class="col-span-3 ps-1 text-base font-semibold">Action</div>
+<ng-template #failureOrLoading>
+  <ng-container *ngIf="errorMessage; else loading">
+    <div class="text-red-500">
+      {{ errorMessage }}
     </div>
-  </div>
-
-  <!-- table content  -->
-  <div class="bg-gray-100 rounded-md p-3 my-2">
-    <div class="grid grid-cols-12 gap-1 border-b py-2">
-      <div class="col-span-2 border-r border-gray-300 ps-1 text-base">
-        Identifier
-      </div>
-      <div class="col-span-5 border-r border-gray-300 ps-1 text-base">
-        Title
-      </div>
-      <div
-        class="col-span-2 border-r border-gray-300 ps-1 text-base font-semibold"
-      >
-        Mark
-      </div>
-      <div class="col-span-3 ps-1 text-base flex gap-2">
-        <button
-          class="bg-teal-500 px-4 py-1 rounded-full font-semibold text-sm text-white"
-        >
-          View
-        </button>
-        <button
-          class="bg-orange-500 px-4 py-1 rounded-full font-semibold text-sm text-white"
-        >
-          Update
-        </button>
-        <button
-          class="bg-red-500 px-4 py-1 rounded-full font-semibold text-sm text-white"
-        >
-          Delete
-        </button>
-      </div>
+  </ng-container>
+  <ng-template #loading>
+    <div class="shadow loader">
+      <span><i class="fa-solid fa-rotate fa-spin"></i></span> &nbsp;
+      <span>Processing...</span>
     </div>
-    <div class="grid grid-cols-12 gap-1 border-b py-2">
-      <div class="col-span-2 border-r border-gray-300 ps-1 text-base">
-        Identifier
-      </div>
-      <div class="col-span-5 border-r border-gray-300 ps-1 text-base">
-        Title
-      </div>
-      <div class="col-span-2 border-r border-gray-300 ps-1 text-base">Mark</div>
-      <div class="col-span-3 ps-1 text-base">Action</div>
-    </div>
-  </div>
-</div>
+  </ng-template>
+</ng-template>

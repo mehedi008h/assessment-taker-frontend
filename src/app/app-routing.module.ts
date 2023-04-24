@@ -35,11 +35,11 @@ const routes: Routes = [
         component: AssessmentsComponent,
       },
       {
-        path: 'assessments/:id',
+        path: 'assessments/:assessmentIdentifier',
         component: AssessmentDetailsComponent,
       },
       {
-        path: 'assessments/:id/add-question',
+        path: 'assessments/:assessmentIdentifier/add-question',
         component: AddQuestionComponent,
       },
     ],

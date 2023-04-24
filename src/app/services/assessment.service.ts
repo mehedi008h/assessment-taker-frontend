@@ -32,4 +32,11 @@ export class AssessmentService {
       `${this.host}/assessment?keyword=${keyword}&page=${currentPage}&size=${pazeSize}`
     );
   }
+
+  // get single assessment
+  public getAssessment(assessmentIdentifier: string): Observable<Assessment> {
+    return this.http.get<Assessment>(
+      `${this.host}/assessment/${assessmentIdentifier}`
+    );
+  }
 }

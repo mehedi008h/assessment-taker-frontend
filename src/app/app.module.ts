@@ -21,6 +21,7 @@ import {
   ionAppsOutline,
   ionTimerOutline,
   ionBowlingBallOutline,
+  ionSearch,
 } from '@ng-icons/ionicons';
 import {
   heroQueueList,
@@ -81,6 +82,7 @@ import { AssessmentDetailsComponent } from './components/admin/assessment-detail
       ionTimerOutline,
       ionBowlingBallOutline,
       heroUserGroup,
+      ionSearch,
     }),
     BrowserAnimationsModule,
   ],
