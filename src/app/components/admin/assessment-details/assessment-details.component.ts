@@ -11,6 +11,7 @@ import { QuestionService } from 'src/app/services/question.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { QuestionViewComponent } from '../question-view/question-view.component';
+import { CustomHttpRespone } from 'src/app/models/custom-http-response';
 
 @Component({
   selector: 'app-assessment-details',
@@ -99,6 +100,20 @@ export class AssessmentDetailsComponent implements OnInit {
           return throwError(errorResponse);
         })
       );
+  }
+
+  public onDeleteQuestion(questionIdentifier: string): void {
+    this.subscriptions.push(
+      this.questionsService.deleteQuestion(questionIdentifier).subscribe(
+        (response: CustomHttpRespone) => {
+          this.notification.notify(response.message);
+          this.getQuestions();
+        },
+        (error: HttpErrorResponse) => {
+          this.notification.notify(error.error.message);
+        }
+      )
+    );
   }
 
   gotoPage(page: number) {

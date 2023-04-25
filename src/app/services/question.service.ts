@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Question } from '../models/question.model';
 import { PageResponse } from '../models/page.response.model';
+import { CustomHttpRespone } from '../models/custom-http-response';
 
 @Injectable({
   providedIn: 'root',
@@ -36,6 +37,14 @@ export class QuestionService {
   public getQuestion(questionIdentifier: string): Observable<Question> {
     return this.http.get<Question>(
       `${this.host}/question/details/${questionIdentifier}`
+    );
+  }
+  // delete question
+  public deleteQuestion(
+    questionIdentifier: string
+  ): Observable<CustomHttpRespone> {
+    return this.http.delete<CustomHttpRespone>(
+      `${this.host}/question/${questionIdentifier}`
     );
   }
 }
