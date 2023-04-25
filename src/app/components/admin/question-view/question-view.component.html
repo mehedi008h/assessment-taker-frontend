@@ -1,0 +1,162 @@
+<ng-container *ngIf="question; else failureOrLoading">
+  <div class="question_view_dialog">
+    <div class="flex justify-between items-center bg-gray-200 px-3 py-2">
+      <div class="font-semibold font-poppins text-xl">
+        {{ question.questionIdentifier }}
+      </div>
+      <div class="flex items-center gap-2">
+        <button
+          class="bg-orange-500 px-4 py-1 rounded-full font-semibold text-sm text-white"
+        >
+          Update
+        </button>
+        <button
+          class="bg-red-500 px-4 py-1 rounded-full font-semibold text-sm text-white"
+        >
+          Delete
+        </button>
+        <button
+          (click)="closeDialog()"
+          class="h-8 w-8 flex justify-center items-center bg-red-600 text-white rounded-full"
+        >
+          x
+        </button>
+      </div>
+    </div>
+    <div class="py-3 px-3 w-full h-full">
+      <h3 class="text-lg text-teal-600">
+        <span class="font-semibold ml-1">Q:</span> {{ question.content }}
+      </h3>
+      <hr class="my-2" />
+      <div class="my-3 grid grid-cols-12 gap-2">
+        <!-- option 1  -->
+        <div class="col-span-6 flex items-center gap-2">
+          <div
+            class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+            [ngClass]="
+              question.option1 === question.questionAnswer
+                ? 'border-teal-600 text-teal-600'
+                : ''
+            "
+          >
+            A
+          </div>
+          <h5
+            [ngClass]="
+              question.option1 === question.questionAnswer
+                ? ' text-teal-600'
+                : ''
+            "
+          >
+            {{ question.option1 }}
+          </h5>
+        </div>
+        <!-- option 2  -->
+        <div class="col-span-6 flex items-center gap-2">
+          <div
+            class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+            [ngClass]="
+              question.option2 === question.questionAnswer
+                ? 'border-teal-600 text-teal-600'
+                : ''
+            "
+          >
+            B
+          </div>
+          <h5
+            [ngClass]="
+              question.option2 === question.questionAnswer
+                ? ' text-teal-600'
+                : ''
+            "
+          >
+            {{ question.option2 }}
+          </h5>
+        </div>
+        <!-- option 3  -->
+        <div class="col-span-6 flex items-center gap-2">
+          <div
+            class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+            [ngClass]="
+              question.option3 === question.questionAnswer
+                ? 'border-teal-600 text-teal-600'
+                : ''
+            "
+          >
+            C
+          </div>
+          <h5
+            [ngClass]="
+              question.option3 === question.questionAnswer
+                ? ' text-teal-600'
+                : ''
+            "
+          >
+            {{ question.option3 }}
+          </h5>
+        </div>
+        <!-- option 4  -->
+        <div class="col-span-6 flex items-center gap-2">
+          <div
+            class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+            [ngClass]="
+              question.option4 === question.questionAnswer
+                ? 'border-teal-600 text-teal-600'
+                : ''
+            "
+          >
+            D
+          </div>
+          <h5
+            [ngClass]="
+              question.option4 === question.questionAnswer
+                ? ' text-teal-600'
+                : ''
+            "
+          >
+            {{ question.option4 }}
+          </h5>
+        </div>
+        <!-- option 5  -->
+        <div
+          *ngIf="question.option5"
+          class="col-span-6 flex items-center gap-2"
+        >
+          <div
+            class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+            [ngClass]="
+              question.option5 === question.questionAnswer
+                ? 'border-teal-600 text-teal-600'
+                : ''
+            "
+          >
+            E
+          </div>
+          <h5
+            [ngClass]="
+              question.option5 === question.questionAnswer
+                ? ' text-teal-600'
+                : ''
+            "
+          >
+            {{ question.option5 }}
+          </h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #failureOrLoading>
+  <ng-container *ngIf="errorMessage; else loading">
+    <div class="text-red-500">
+      {{ errorMessage }}
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <div class="shadow loader">
+      <span><i class="fa-solid fa-rotate fa-spin"></i></span> &nbsp;
+      <span>Processing...</span>
+    </div>
+  </ng-template>
+</ng-template>

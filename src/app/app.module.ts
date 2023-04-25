@@ -7,6 +7,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { NgIconsModule } from '@ng-icons/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 import {
   ionLogIn,
   ionLeafOutline,
@@ -43,6 +44,7 @@ import { NotificationService } from './services/notification.service';
 import { CategoriesComponent } from './components/admin/categories/categories.component';
 import { AssessmentsComponent } from './components/admin/assessments/assessments.component';
 import { AssessmentDetailsComponent } from './components/admin/assessment-details/assessment-details.component';
+import { QuestionViewComponent } from './components/admin/question-view/question-view.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,7 @@ import { AssessmentDetailsComponent } from './components/admin/assessment-detail
     CategoriesComponent,
     AssessmentsComponent,
     AssessmentDetailsComponent,
+    QuestionViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +68,7 @@ import { AssessmentDetailsComponent } from './components/admin/assessment-detail
     ReactiveFormsModule,
     HttpClientModule,
     MatSnackBarModule,
+    MatDialogModule,
     NgIconsModule.withIcons({
       ionLogIn,
       ionLeafOutline,

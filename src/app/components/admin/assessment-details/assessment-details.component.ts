@@ -9,6 +9,8 @@ import { PageResponse } from 'src/app/models/page.response.model';
 import { Question } from 'src/app/models/question.model';
 import { QuestionService } from 'src/app/services/question.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { QuestionViewComponent } from '../question-view/question-view.component';
 
 @Component({
   selector: 'app-assessment-details',
@@ -32,7 +34,8 @@ export class AssessmentDetailsComponent implements OnInit {
     private fb: FormBuilder,
     private assessmentService: AssessmentService,
     private questionsService: QuestionService,
-    private notification: NotificationService
+    private notification: NotificationService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -48,7 +51,23 @@ export class AssessmentDetailsComponent implements OnInit {
     this.getQuestions();
   }
 
-  // get categories
+  openDialog(identifier: string): void {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.data = {
+      questionIdentifier: identifier,
+    };
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    this.dialog.open(QuestionViewComponent, dialogConfig);
+    // const dialogRef = this.dialog.open(AddEmployeeComponent, dialogConfig);
+
+    // dialogRef
+    //   .afterClosed()
+    //   .subscribe((data) => console.log('Dialog output:', data));
+  }
+
+  // get assessment
   public getAssessment(): void {
     this.subscriptions.push(
       this.assessmentService.getAssessment(this.assessmentIdentifier).subscribe(

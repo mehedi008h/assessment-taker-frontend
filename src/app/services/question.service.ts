@@ -31,4 +31,11 @@ export class QuestionService {
       `${this.host}/question/${assessmentIdentifier}?keyword=${keyword}&page=${currentPage}&size=${pazeSize}`
     );
   }
+
+  // get single question
+  public getQuestion(questionIdentifier: string): Observable<Question> {
+    return this.http.get<Question>(
+      `${this.host}/question/details/${questionIdentifier}`
+    );
+  }
 }
