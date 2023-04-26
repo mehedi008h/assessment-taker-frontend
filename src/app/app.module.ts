@@ -47,6 +47,7 @@ import { AssessmentDetailsComponent } from './components/admin/assessment-detail
 import { QuestionViewComponent } from './components/admin/question-view/question-view.component';
 import { UpdateQuestionComponent } from './components/admin/forms/update-question/update-question.component';
 import { UpdateAssessmentComponent } from './components/admin/forms/update-assessment/update-assessment.component';
+import { UpdateCategoryComponent } from './components/admin/forms/update-category/update-category.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { UpdateAssessmentComponent } from './components/admin/forms/update-asses
     QuestionViewComponent,
     UpdateQuestionComponent,
     UpdateAssessmentComponent,
+    UpdateCategoryComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,7 @@ import { AssessmentDetailsComponent } from './components/admin/assessment-detail
 import { AddQuestionComponent } from './components/admin/forms/add-question/add-question.component';
 import { UpdateQuestionComponent } from './components/admin/forms/update-question/update-question.component';
 import { UpdateAssessmentComponent } from './components/admin/forms/update-assessment/update-assessment.component';
+import { UpdateCategoryComponent } from './components/admin/forms/update-category/update-category.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,10 @@ const routes: Routes = [
       {
         path: 'assessments/update-assessment/:assessmentIdentifier',
         component: UpdateAssessmentComponent,
+      },
+      {
+        path: 'categories/update-category/:categoryIdentifier',
+        component: UpdateCategoryComponent,
       },
     ],
   },

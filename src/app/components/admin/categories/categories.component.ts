@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Category } from 'src/app/models/category.model';
+import { CustomHttpRespone } from 'src/app/models/custom-http-response';
 import { CategoryService } from 'src/app/services/category.service';
 import { NotificationService } from 'src/app/services/notification.service';
 
@@ -14,7 +15,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 export class CategoriesComponent implements OnInit {
   public categories!: Category[];
   private subscriptions: Subscription[] = [];
-  public refreshing!: boolean;
+  errorMessage!: string;
 
   constructor(
     private router: Router,
@@ -23,27 +24,34 @@ export class CategoriesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getCategories(true);
+    this.getCategories();
   }
 
   // get categories
-  public getCategories(showNotification: boolean): void {
-    this.refreshing = true;
+  public getCategories(): void {
     this.subscriptions.push(
       this.categoryService.getCategories().subscribe(
         (response: Category[]) => {
           this.categories = response;
           console.log('Response Categorys:', this.categories);
-          this.refreshing = false;
-          if (showNotification) {
-            this.notification.notify(
-              `${response.length} Category(s) loaded successfully.`
-            );
-          }
         },
         (errorResponse: HttpErrorResponse) => {
           this.notification.notify(errorResponse.error.message);
-          this.refreshing = false;
+        }
+      )
+    );
+  }
+
+  // delete category
+  public onDeleteCategory(categoryIdentifier: string): void {
+    this.subscriptions.push(
+      this.categoryService.deleteCategory(categoryIdentifier).subscribe(
+        (response: CustomHttpRespone) => {
+          this.notification.notify(response.message);
+          this.getCategories();
+        },
+        (error: HttpErrorResponse) => {
+          this.notification.notify(error.error.message);
         }
       )
     );
