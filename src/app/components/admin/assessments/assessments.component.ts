@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subscription, catchError, throwError } from 'rxjs';
 import { Assessment } from 'src/app/models/assessment.model';
+import { CustomHttpRespone } from 'src/app/models/custom-http-response';
 import { PageResponse } from 'src/app/models/page.response.model';
 import { AssessmentService } from 'src/app/services/assessment.service';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -48,6 +49,21 @@ export class AssessmentsComponent implements OnInit {
           return throwError(errorResponse);
         })
       );
+  }
+
+  // delete assessment
+  public onDeleteAssessment(assessmentIdentifier: string): void {
+    this.subscriptions.push(
+      this.assessmentService.deleteAssessment(assessmentIdentifier).subscribe(
+        (response: CustomHttpRespone) => {
+          this.notification.notify(response.message);
+          this.getAssessments();
+        },
+        (error: HttpErrorResponse) => {
+          this.notification.notify(error.error.message);
+        }
+      )
+    );
   }
 
   gotoPage(page: number) {

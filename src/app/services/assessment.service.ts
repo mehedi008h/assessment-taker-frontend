@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Assessment } from '../models/assessment.model';
 import { PageResponse } from '../models/page.response.model';
+import { CustomHttpRespone } from '../models/custom-http-response';
 
 @Injectable({
   providedIn: 'root',
@@ -36,6 +37,20 @@ export class AssessmentService {
   // get single assessment
   public getAssessment(assessmentIdentifier: string): Observable<Assessment> {
     return this.http.get<Assessment>(
+      `${this.host}/assessment/${assessmentIdentifier}`
+    );
+  }
+
+  // update assessment
+  public updateAssessment(assessment: Assessment): Observable<Assessment> {
+    return this.http.put<Assessment>(`${this.host}/assessment`, assessment);
+  }
+
+  // delete assessment
+  public deleteAssessment(
+    assessmentIdentifier: string
+  ): Observable<CustomHttpRespone> {
+    return this.http.delete<CustomHttpRespone>(
       `${this.host}/assessment/${assessmentIdentifier}`
     );
   }

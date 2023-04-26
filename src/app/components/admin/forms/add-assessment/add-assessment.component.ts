@@ -82,6 +82,5 @@ export class AddAssessmentComponent implements OnInit {
           }
         )
     );
-    console.log(this.addAssessmentFormGroup.value);
   }
 }

@@ -33,12 +33,16 @@
         <div class="flex justify-between items-center pb-2">
           <div class="text-sm text-teal-600">#{{ a.assessmentIdentifier }}</div>
           <div class="flex gap-2">
-            <button
+            <a
+              [routerLink]="[
+                '/admin/assessments/update-assessment/' + a.assessmentIdentifier
+              ]"
               class="bg-yellow-600 text-white py-1 px-3 rounded-full font-semibold text-xs"
             >
-              Edit
-            </button>
+              Update
+            </a>
             <button
+              (click)="onDeleteAssessment(a.assessmentIdentifier)"
               class="bg-red-600 text-white py-1 px-3 rounded-full font-semibold text-xs"
             >
               Delete
