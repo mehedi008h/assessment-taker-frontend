@@ -37,7 +37,7 @@ export class AddQuestionComponent implements OnInit {
       this.route.snapshot.params['assessmentIdentifier'];
 
     this.getAssessment();
-    // assessment form validation
+    // question form validation
     this.addQuestionFormGroup = this.fb.group({
       content: ['', Validators.required],
       option1: ['', Validators.required],

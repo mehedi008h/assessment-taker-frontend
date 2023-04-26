@@ -74,7 +74,6 @@ export class AssessmentDetailsComponent implements OnInit {
       this.assessmentService.getAssessment(this.assessmentIdentifier).subscribe(
         (response: Assessment) => {
           this.assessment = response;
-          console.log('Response Assessment:', this.assessment);
         },
         (errorResponse: HttpErrorResponse) => {
           this.notification.notify(errorResponse.error.message);

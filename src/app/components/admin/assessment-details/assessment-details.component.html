@@ -108,7 +108,7 @@
                 class="border border-gray-400 focus:border-teal-500 rounded-full flex items-center"
               >
                 <input
-                  class="outline-none px-2 py-1 rounded-full text-sm font-normal"
+                  class="outline-none px-2 py-1 rounded-s-full h-full text-sm font-normal"
                   type="text"
                   placeholder="Search ..."
                   formControlName="keyword"
@@ -159,11 +159,14 @@
             >
               View
             </button>
-            <button
+            <a
+              [routerLink]="[
+                '/admin/assessments/update-question/' + q.questionIdentifier
+              ]"
               class="bg-orange-500 px-4 py-1 rounded-full font-semibold text-sm text-white"
             >
               Update
-            </button>
+            </a>
             <button
               (click)="onDeleteQuestion(q.questionIdentifier)"
               class="bg-red-500 px-4 py-1 rounded-full font-semibold text-sm text-white"

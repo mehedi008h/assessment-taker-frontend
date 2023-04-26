@@ -1,6 +1,7 @@
 import { Assessment } from './assessment.model';
 
 export interface Question {
+  id: number;
   questionIdentifier: string;
   content: string;
   option1: string;

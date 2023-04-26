@@ -8,6 +8,7 @@ import { CategoriesComponent } from './components/admin/categories/categories.co
 import { AssessmentsComponent } from './components/admin/assessments/assessments.component';
 import { AssessmentDetailsComponent } from './components/admin/assessment-details/assessment-details.component';
 import { AddQuestionComponent } from './components/admin/forms/add-question/add-question.component';
+import { UpdateQuestionComponent } from './components/admin/forms/update-question/update-question.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
       {
         path: 'assessments/:assessmentIdentifier/add-question',
         component: AddQuestionComponent,
+      },
+      {
+        path: 'assessments/update-question/:questionIdentifier',
+        component: UpdateQuestionComponent,
       },
     ],
   },

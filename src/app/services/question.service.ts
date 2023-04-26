@@ -39,6 +39,12 @@ export class QuestionService {
       `${this.host}/question/details/${questionIdentifier}`
     );
   }
+
+  // update question
+  public updateQuestion(question: Question): Observable<Question> {
+    return this.http.put<Question>(`${this.host}/question`, question);
+  }
+
   // delete question
   public deleteQuestion(
     questionIdentifier: string
