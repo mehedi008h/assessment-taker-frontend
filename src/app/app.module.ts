@@ -23,6 +23,8 @@ import {
   ionTimerOutline,
   ionBowlingBallOutline,
   ionSearch,
+  ionListOutline,
+  ionGridOutline,
 } from '@ng-icons/ionicons';
 import {
   heroQueueList,
@@ -93,6 +95,8 @@ import { UpdateCategoryComponent } from './components/admin/forms/update-categor
       ionBowlingBallOutline,
       heroUserGroup,
       ionSearch,
+      ionListOutline,
+      ionGridOutline,
     }),
     BrowserAnimationsModule,
   ],

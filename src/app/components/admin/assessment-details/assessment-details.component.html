@@ -71,18 +71,24 @@
               </div>
             </div>
           </div>
-          <div class="mt-4 mb-2">
+          <div class="mt-4 mb-2 flex gap-3">
             <a
               [routerLink]="[
                 '/admin/assessments/' +
                   assessment.assessmentIdentifier +
                   '/add-question'
               ]"
-              routerLinkActive="active_sidebar"
-              class="bg-teal-500 px-4 py-1 rounded-full font-semibold text-white"
+              class="bg-teal-500 px-4 py-1 rounded-full font-semibold text-white text-sm"
             >
               Add Question
             </a>
+            <button
+              (click)="updateassessment(!assessment.active)"
+              class="px-4 py-1 rounded-full font-semibold text-white text-sm"
+              [ngClass]="assessment.active ? 'bg-red-500' : 'bg-blue-500'"
+            >
+              {{ assessment.active ? "Unpublish" : "Publish" }} Assessment
+            </button>
           </div>
         </div>
       </div>

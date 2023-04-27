@@ -101,6 +101,7 @@ export class AssessmentDetailsComponent implements OnInit {
       );
   }
 
+  // delete question
   public onDeleteQuestion(questionIdentifier: string): void {
     this.subscriptions.push(
       this.questionsService.deleteQuestion(questionIdentifier).subscribe(
@@ -112,6 +113,33 @@ export class AssessmentDetailsComponent implements OnInit {
           this.notification.notify(error.error.message);
         }
       )
+    );
+  }
+
+  // update assessment
+  updateassessment(status: boolean) {
+    this.subscriptions.push(
+      this.assessmentService
+        .updateAssessment({
+          ...this.assessment,
+          active: status,
+        })
+        .subscribe(
+          (response: Assessment) => {
+            this.showLoading = false;
+            this.notification.notify(
+              `Assessment ${
+                this.assessment.active ? 'Unpublished' : 'Published'
+              } Successfully`
+            );
+            this.getAssessment();
+          },
+          (errorResponse: HttpErrorResponse) => {
+            this.showLoading = false;
+            this.errorMessage = errorResponse.error.message;
+            this.notification.notify(errorResponse.error.message);
+          }
+        )
     );
   }
 

@@ -2,28 +2,43 @@
   *ngIf="assessments$ | async as listAssessment; else failureOrLoading"
 >
   <div class="my-5 px-3">
-    <div *ngIf="searchFormGroup" class="flex justify-between items-center">
+    <!-- header  -->
+    <div
+      *ngIf="searchFormGroup"
+      class="flex justify-between items-center bg-header p-2 rounded-md"
+    >
       <div>
         <form [formGroup]="searchFormGroup" (ngSubmit)="getAssessments()">
           <div
-            class="border border-gray-400 focus:border-teal-500 rounded-full w-96 flex items-center"
+            class="border border-white focus:border-teal-500 rounded-full w-96 flex items-center"
           >
             <input
-              class="outline-none px-2 py-2 rounded-full w-full"
+              class="outline-none px-2 py-1 rounded-s-full w-full h-full bg-inherit"
               type="text"
               placeholder="Search ..."
               formControlName="keyword"
             />
             <button
               type="submit"
-              class="px-3 py-2 bg-teal-600 rounded-r-full text-white"
+              class="px-3 py-2 border-s-2 border-gray-300 rounded-r-full text-white font-semibold"
             >
               Search
             </button>
           </div>
         </form>
       </div>
-      <div>2</div>
+      <div class="flex items-center gap-4 pr-4">
+        <div
+          class="h-8 w-8 border border-gray-400 hover:border-teal-500 hover:text-teal-500 rounded-md flex justify-center items-center cursor-pointer"
+        >
+          <ng-icon name="ionGridOutline"></ng-icon>
+        </div>
+        <div
+          class="h-8 w-8 border border-gray-400 hover:border-teal-500 hover:text-teal-500 rounded-md flex justify-center items-center cursor-pointer"
+        >
+          <ng-icon name="ionListOutline"></ng-icon>
+        </div>
+      </div>
     </div>
     <div class="grid grid-cols-12 gap-3 mt-5">
       <div
@@ -53,10 +68,33 @@
         <div class="mt-2">
           <a
             [routerLink]="'/admin/assessments/' + a.assessmentIdentifier"
-            class="text-lg font-semibold"
+            class="text-lg font-semibold hover:text-teal-500"
             >{{ a.title }}</a
           >
           <p class="text-gray-600 text-sm mt-1">{{ a.description }}</p>
+          <div class="flex flex-row gap-3 mt-5">
+            <div class="flex gap-2 items-center">
+              <ng-icon
+                class="text-2xl font-extrabold"
+                name="ionTimerOutline"
+              ></ng-icon>
+              <div class="text-gray-500">{{ a.time }} minute</div>
+            </div>
+            <div class="flex gap-2 items-center">
+              <ng-icon
+                class="text-2xl font-extrabold"
+                name="ionBowlingBallOutline"
+              ></ng-icon>
+              <div class="text-gray-500">{{ a.attempt }} times</div>
+            </div>
+            <div class="flex gap-2 items-center">
+              <ng-icon
+                class="text-2xl font-extrabold"
+                name="heroUserGroup"
+              ></ng-icon>
+              <div class="text-gray-500">{{ a.totalTaken }} user</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
