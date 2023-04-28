@@ -42,7 +42,6 @@ import {
 } from '@ng-icons/heroicons/outline';
 import { AuthComponent } from './components/auth/auth.component';
 import { SidebarComponent } from './components/admin/sidebar/sidebar.component';
-import { HomeComponent } from './components/admin/home/home.component';
 import { HeaderComponent } from './components/admin/header/header.component';
 import { AddCategoryComponent } from './components/admin/forms/add-category/add-category.component';
 import { AddAssessmentComponent } from './components/admin/forms/add-assessment/add-assessment.component';
@@ -64,6 +63,9 @@ import { LeaderBoardComponent } from './components/leader-board/leader-board.com
 import { HealthComponent } from './components/admin/health/health.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { UserViewComponent } from './components/admin/user-view/user-view.component';
+import { AdminHomeComponent } from './components/admin/admin-home/admin-home.component';
+import { HomeComponent } from './components/home/home.component';
+import { UserAssessmentComponent } from './components/user/user-assessment/user-assessment.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +90,8 @@ import { UserViewComponent } from './components/admin/user-view/user-view.compon
     HealthComponent,
     DashboardComponent,
     UserViewComponent,
+    AdminHomeComponent,
+    UserAssessmentComponent,
   ],
   imports: [
     BrowserModule,
