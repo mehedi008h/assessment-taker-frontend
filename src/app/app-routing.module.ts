@@ -11,6 +11,10 @@ import { AddQuestionComponent } from './components/admin/forms/add-question/add-
 import { UpdateQuestionComponent } from './components/admin/forms/update-question/update-question.component';
 import { UpdateAssessmentComponent } from './components/admin/forms/update-assessment/update-assessment.component';
 import { UpdateCategoryComponent } from './components/admin/forms/update-category/update-category.component';
+import { UsersComponent } from './components/admin/users/users.component';
+import { LeaderBoardComponent } from './components/leader-board/leader-board.component';
+import { HealthComponent } from './components/admin/health/health.component';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -21,6 +25,10 @@ const routes: Routes = [
     path: 'admin',
     component: HomeComponent,
     children: [
+      {
+        path: 'home',
+        component: DashboardComponent,
+      },
       {
         path: 'add-category',
         component: AddCategoryComponent,
@@ -56,6 +64,18 @@ const routes: Routes = [
       {
         path: 'categories/update-category/:categoryIdentifier',
         component: UpdateCategoryComponent,
+      },
+      {
+        path: 'users',
+        component: UsersComponent,
+      },
+      {
+        path: 'leaderboard',
+        component: LeaderBoardComponent,
+      },
+      {
+        path: 'system-health',
+        component: HealthComponent,
       },
     ],
   },

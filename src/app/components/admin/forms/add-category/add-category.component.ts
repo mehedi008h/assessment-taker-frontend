@@ -1,6 +1,7 @@
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Category } from 'src/app/models/category.model';
 import { CategoryService } from 'src/app/services/category.service';
@@ -19,6 +20,7 @@ export class AddCategoryComponent implements OnInit {
   errorMessage!: string;
 
   constructor(
+    private router: Router,
     private fb: FormBuilder,
     private categoryService: CategoryService,
     private notification: NotificationService
@@ -42,6 +44,7 @@ export class AddCategoryComponent implements OnInit {
           (response: HttpResponse<Category>) => {
             this.showLoading = false;
             this.notification.notify('Create Category Successfully');
+            this.router.navigateByUrl('/admin/categories');
           },
           (errorResponse: HttpErrorResponse) => {
             this.showLoading = false;

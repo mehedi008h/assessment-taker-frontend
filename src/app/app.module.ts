@@ -8,6 +8,7 @@ import { NgIconsModule } from '@ng-icons/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 import {
   ionLogIn,
   ionLeafOutline,
@@ -25,6 +26,9 @@ import {
   ionSearch,
   ionListOutline,
   ionGridOutline,
+  ionMailOpenOutline,
+  ionPhonePortraitOutline,
+  ionAtSharp,
 } from '@ng-icons/ionicons';
 import {
   heroQueueList,
@@ -50,6 +54,10 @@ import { QuestionViewComponent } from './components/admin/question-view/question
 import { UpdateQuestionComponent } from './components/admin/forms/update-question/update-question.component';
 import { UpdateAssessmentComponent } from './components/admin/forms/update-assessment/update-assessment.component';
 import { UpdateCategoryComponent } from './components/admin/forms/update-category/update-category.component';
+import { UsersComponent } from './components/admin/users/users.component';
+import { LeaderBoardComponent } from './components/leader-board/leader-board.component';
+import { HealthComponent } from './components/admin/health/health.component';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +77,10 @@ import { UpdateCategoryComponent } from './components/admin/forms/update-categor
     UpdateQuestionComponent,
     UpdateAssessmentComponent,
     UpdateCategoryComponent,
+    UsersComponent,
+    LeaderBoardComponent,
+    HealthComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,6 +89,7 @@ import { UpdateCategoryComponent } from './components/admin/forms/update-categor
     HttpClientModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatMenuModule,
     NgIconsModule.withIcons({
       ionLogIn,
       ionLeafOutline,
@@ -97,6 +110,9 @@ import { UpdateCategoryComponent } from './components/admin/forms/update-categor
       ionSearch,
       ionListOutline,
       ionGridOutline,
+      ionMailOpenOutline,
+      ionPhonePortraitOutline,
+      ionAtSharp,
     }),
     BrowserAnimationsModule,
   ],

@@ -1,7 +1,7 @@
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Assessment } from 'src/app/models/assessment.model';
 import { Question } from 'src/app/models/question.model';
@@ -25,6 +25,7 @@ export class AddQuestionComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private fb: FormBuilder,
     private assessmentService: AssessmentService,
     private questionService: QuestionService,
@@ -78,6 +79,9 @@ export class AddQuestionComponent implements OnInit {
           (response: HttpResponse<Question>) => {
             this.showLoading = false;
             this.notification.notify('Question Added Successfully');
+            this.router.navigateByUrl(
+              `/admin/assessments/${this.assessment.assessmentIdentifier}`
+            );
           },
           (errorResponse: HttpErrorResponse) => {
             this.showLoading = false;

@@ -1,6 +1,7 @@
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Assessment } from 'src/app/models/assessment.model';
 import { Category } from 'src/app/models/category.model';
@@ -22,6 +23,7 @@ export class AddAssessmentComponent implements OnInit {
   public showLoading!: boolean;
 
   constructor(
+    private router: Router,
     private fb: FormBuilder,
     private categoryService: CategoryService,
     private assessmentService: AssessmentService,
@@ -75,6 +77,7 @@ export class AddAssessmentComponent implements OnInit {
           (response: HttpResponse<Assessment>) => {
             this.showLoading = false;
             this.notification.notify('Create Assesment Successfully');
+            this.router.navigateByUrl('/admin/assessments');
           },
           (errorResponse: HttpErrorResponse) => {
             this.showLoading = false;

@@ -29,11 +29,16 @@
 
       <div *ngIf="user" class="h-10 w-10 border rounded-full p-1">
         <img
+          [matMenuTriggerFor]="beforeMenu"
           class="w-full h-full object-cover"
           src="{{ user.profileImageUrl }}"
           alt=""
         />
+        <mat-menu #beforeMenu="matMenu" xPosition="before">
+          <button (click)="onLogOut()" mat-menu-item>Logout</button>
+        </mat-menu>
       </div>
+
       <a
         *ngIf="!user"
         class="px-4 py-1 rounded-full border hover:bg-teal-500"
