@@ -1,0 +1,147 @@
+<ng-container *ngIf="user; else failureOrLoading">
+  <div class="w-96">
+    <div class="flex justify-between items-center bg-gray-200 px-3 py-2">
+      <div class="font-semibold font-poppins text-xl">
+        {{ user.userIdentifier }}
+      </div>
+      <button
+        (click)="closeDialog()"
+        class="h-8 w-8 flex justify-center items-center bg-red-600 text-white rounded-full"
+      >
+        x
+      </button>
+    </div>
+    <div class="py-3 px-3 w-full h-full">
+      <div class="mt-2 flex flex-col justify-center items-center w-full">
+        <div
+          class="h-32 w-32 border rounded-full p-2 relative"
+          [ngClass]="user.active ? 'border-green-600' : 'border-red-600'"
+        >
+          <img
+            src="{{ user.profileImageUrl }}"
+            class="w-full h-full object-cover"
+            alt=""
+          />
+          <h3
+            class="text-white py-1 px-3 rounded-full font-semibold text-xs absolute top-4 -right-10"
+            [ngClass]="user.active ? 'bg-green-600' : 'bg-red-600'"
+          >
+            {{ user.active ? "Active" : "Deactive" }}
+          </h3>
+        </div>
+        <h3 class="text-lg font-semibold">
+          {{ user.firstName }} {{ user.lastName }}
+        </h3>
+        <p class="text-gray-500 text-sm">{{ user.description }}</p>
+
+        <div class="flex flex-col gap-3 mt-5">
+          <div class="flex gap-2 items-center">
+            <div class="flex items-center gap-2">
+              <ng-icon
+                class="text-2xl font-extrabold"
+                name="ionAtSharp"
+              ></ng-icon>
+              <h3>Username :</h3>
+            </div>
+            <div class="text-gray-500">{{ user.username }}</div>
+          </div>
+          <div class="flex gap-2 items-center">
+            <div class="flex items-center gap-2">
+              <ng-icon
+                class="text-2xl font-extrabold"
+                name="ionMailOpenOutline"
+              ></ng-icon>
+              <h3>Email :</h3>
+            </div>
+            <div class="text-gray-500">{{ user.email }}</div>
+          </div>
+          <div *ngIf="user.phone" class="flex gap-2 items-center">
+            <div class="flex items-center gap-2">
+              <ng-icon
+                class="text-2xl font-extrabold"
+                name="ionPhonePortraitOutline"
+              ></ng-icon>
+              <h3>Phone :</h3>
+            </div>
+            <div class="text-gray-500">{{ user.phone }}</div>
+          </div>
+          <div *ngIf="user.work" class="flex gap-2 items-center">
+            <div class="flex items-center gap-2">
+              <ng-icon
+                class="text-2xl font-extrabold"
+                name="heroBuildingOffice2"
+              ></ng-icon>
+              <h3>Work :</h3>
+            </div>
+            <div class="text-gray-500">{{ user.work }}</div>
+          </div>
+          <div *ngIf="user.joinDate" class="flex gap-2 items-center">
+            <div class="flex items-center gap-2">
+              <ng-icon
+                class="text-2xl font-extrabold"
+                name="ionCalendarNumberOutline"
+              ></ng-icon>
+              <h3>Join Date :</h3>
+            </div>
+            <div class="text-gray-500">
+              {{ user.joinDate | date : "mediumDate" }}
+            </div>
+          </div>
+          <div
+            *ngIf="user.lastLoginDateDisplay"
+            class="flex gap-2 items-center"
+          >
+            <div class="flex items-center gap-2">
+              <ng-icon
+                class="text-2xl font-extrabold"
+                name="ionCalendarOutline"
+              ></ng-icon>
+              <h3>Login Date :</h3>
+            </div>
+            <div class="text-gray-500">
+              {{ user.lastLoginDateDisplay | date : "medium" }}
+            </div>
+          </div>
+          <div *ngIf="user.role" class="flex gap-2 items-center">
+            <div class="flex items-center gap-2">
+              <ng-icon
+                class="text-2xl font-extrabold"
+                name="heroLightBulb"
+              ></ng-icon>
+              <h3>Role :</h3>
+            </div>
+            <div class="text-gray-500">{{ user.role }}</div>
+          </div>
+        </div>
+        <div *ngIf="user.active" class="w-full mt-5">
+          <button
+            class="py-1 rounded-md w-full text-white font-semibold text-sm"
+            [ngClass]="user.active ? 'bg-red-500' : 'bg-teal-500'"
+          >
+            {{ user.active ? "Deactive" : "Active" }} Account
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #failureOrLoading>
+  <ng-container *ngIf="errorMessage; else loading">
+    <div class="text-red-500">
+      {{ errorMessage }}
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <div class="shadow loader">
+      <div>
+        <mat-progress-spinner
+          class="spinner"
+          color="primary"
+          mode="indeterminate"
+        ></mat-progress-spinner>
+      </div>
+      <span>Processing...</span>
+    </div>
+  </ng-template>
+</ng-template>

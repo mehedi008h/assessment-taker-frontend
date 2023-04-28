@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {
   ionLogIn,
   ionLeafOutline,
@@ -29,11 +30,15 @@ import {
   ionMailOpenOutline,
   ionPhonePortraitOutline,
   ionAtSharp,
+  ionCalendarNumberOutline,
+  ionCalendarOutline,
 } from '@ng-icons/ionicons';
 import {
   heroQueueList,
   heroUsers,
   heroUserGroup,
+  heroLightBulb,
+  heroBuildingOffice2,
 } from '@ng-icons/heroicons/outline';
 import { AuthComponent } from './components/auth/auth.component';
 import { SidebarComponent } from './components/admin/sidebar/sidebar.component';
@@ -58,6 +63,7 @@ import { UsersComponent } from './components/admin/users/users.component';
 import { LeaderBoardComponent } from './components/leader-board/leader-board.component';
 import { HealthComponent } from './components/admin/health/health.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { UserViewComponent } from './components/admin/user-view/user-view.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +87,7 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
     LeaderBoardComponent,
     HealthComponent,
     DashboardComponent,
+    UserViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,6 +97,7 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
     MatSnackBarModule,
     MatDialogModule,
     MatMenuModule,
+    MatProgressSpinnerModule,
     NgIconsModule.withIcons({
       ionLogIn,
       ionLeafOutline,
@@ -113,6 +121,10 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
       ionMailOpenOutline,
       ionPhonePortraitOutline,
       ionAtSharp,
+      ionCalendarNumberOutline,
+      ionCalendarOutline,
+      heroLightBulb,
+      heroBuildingOffice2,
     }),
     BrowserAnimationsModule,
   ],

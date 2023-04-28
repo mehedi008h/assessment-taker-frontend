@@ -22,6 +22,14 @@ body {
   padding: 5px 10px;
   border-radius: 100px;
   user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
   cursor: pointer;
   z-index: 9000;
+}
+.spinner {
+  height: 20px !important;
+  width: 20px !important;
 }

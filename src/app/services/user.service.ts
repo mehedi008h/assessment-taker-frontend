@@ -23,4 +23,9 @@ export class UserService {
       `${this.host}/user?keyword=${keyword}&page=${currentPage}&size=${pazeSize}`
     );
   }
+
+  // get single user
+  public getUser(username: string): Observable<User> {
+    return this.http.get<User>(`${this.host}/user/find/${username}`);
+  }
 }

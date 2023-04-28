@@ -45,6 +45,7 @@
           <div class="text-sm text-teal-600">#{{ u.userIdentifier }}</div>
           <div class="flex gap-2">
             <button
+              (click)="openDialog(u.username)"
               class="bg-teal-600 text-white py-1 px-3 rounded-full font-semibold text-xs"
             >
               View

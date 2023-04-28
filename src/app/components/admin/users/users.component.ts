@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Observable, Subscription, catchError, throwError } from 'rxjs';
 import { PageResponse } from 'src/app/models/page.response.model';
 import { User } from 'src/app/models/user.model';
 import { NotificationService } from 'src/app/services/notification.service';
 import { UserService } from 'src/app/services/user.service';
+import { UserViewComponent } from '../user-view/user-view.component';
 
 @Component({
   selector: 'app-users',
@@ -25,6 +27,7 @@ export class UsersComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private userService: UserService,
+    public dialog: MatDialog,
     private notification: NotificationService
   ) {}
 
@@ -47,6 +50,17 @@ export class UsersComponent implements OnInit {
           return throwError(errorResponse);
         })
       );
+  }
+
+  openDialog(value: string): void {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.data = {
+      username: value,
+    };
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    this.dialog.open(UserViewComponent, dialogConfig);
   }
 
   gotoPage(page: number) {
