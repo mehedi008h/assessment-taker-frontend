@@ -32,6 +32,13 @@ import {
   ionAtSharp,
   ionCalendarNumberOutline,
   ionCalendarOutline,
+  ionNewspaperOutline,
+  ionRocketOutline,
+  ionTrophyOutline,
+  ionExpandSharp,
+  ionAlarmOutline,
+  ionCheckboxOutline,
+  ionCheckbox,
 } from '@ng-icons/ionicons';
 import {
   heroQueueList,
@@ -39,6 +46,7 @@ import {
   heroUserGroup,
   heroLightBulb,
   heroBuildingOffice2,
+  heroMegaphone,
 } from '@ng-icons/heroicons/outline';
 import { AuthComponent } from './components/auth/auth.component';
 import { SidebarComponent } from './components/admin/sidebar/sidebar.component';
@@ -66,6 +74,8 @@ import { UserViewComponent } from './components/admin/user-view/user-view.compon
 import { AdminHomeComponent } from './components/admin/admin-home/admin-home.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserAssessmentComponent } from './components/user/user-assessment/user-assessment.component';
+import { UserAssessmentDetailsComponent } from './components/user/user-assessment-details/user-assessment-details.component';
+import { ConfirmAssessmentComponent } from './components/user/confirm-assessment/confirm-assessment.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +102,8 @@ import { UserAssessmentComponent } from './components/user/user-assessment/user-
     UserViewComponent,
     AdminHomeComponent,
     UserAssessmentComponent,
+    UserAssessmentDetailsComponent,
+    ConfirmAssessmentComponent,
   ],
   imports: [
     BrowserModule,
@@ -129,6 +141,14 @@ import { UserAssessmentComponent } from './components/user/user-assessment/user-
       ionCalendarOutline,
       heroLightBulb,
       heroBuildingOffice2,
+      heroMegaphone,
+      ionNewspaperOutline,
+      ionRocketOutline,
+      ionTrophyOutline,
+      ionExpandSharp,
+      ionAlarmOutline,
+      ionCheckboxOutline,
+      ionCheckbox,
     }),
     BrowserAnimationsModule,
   ],

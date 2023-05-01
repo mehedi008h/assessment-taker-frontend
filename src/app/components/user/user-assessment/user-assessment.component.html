@@ -1,21 +1,31 @@
-<div class="bg-gray-200 min-h-screen">
+<div class="bg-gray-100 min-h-screen">
   <app-navbar></app-navbar>
   <div class="w-4/5 mx-auto my-3">
     <!-- header  -->
-    <div class="flex justify-between items-center">
-      <div class="bg-white rounded-full ps-3 w-96 flex">
-        <input type="text" class="outline-none py-1 w-full" />
-        <button
-          class="bg-gray-500 py-2 px-3 rounded-full text-white font-semibold text-sm"
-        >
-          Search
-        </button>
+    <div class="flex justify-between items-center gap-4">
+      <div
+        class="border border-gray-500 rounded-md ps-3 w-full h-10 flex items-center"
+      >
+        <input
+          type="text"
+          class="outline-none w-full bg-inherit text-gray-400 text-sm"
+          placeholder="Search for activity ..."
+        />
+      </div>
+      <div
+        class="w-96 h-10 border border-gray-500 rounded-md px-3 flex items-center justify-between"
+      >
+        <h3 class="font-semibold">Filter</h3>
+        2
       </div>
     </div>
     <!-- assessment  -->
     <div class="my-4">
       <div class="grid grid-cols-12 gap-3">
-        <div class="col-span-4 bg-white rounded-md p-2">
+        <a
+          routerLink="/assessments/2"
+          class="col-span-4 bg-white rounded-md p-2"
+        >
           <div class="w-full h-32 bg-gray-100 rounded-md relative">
             <div
               class="bg-teal-500 px-3 py-1 rounded-full flex items-center gap-2 w-fit absolute top-2 right-2 z-10"
@@ -48,7 +58,7 @@
               <div class="">user taken</div>
             </div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>
