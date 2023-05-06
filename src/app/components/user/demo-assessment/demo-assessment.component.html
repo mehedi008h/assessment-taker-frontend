@@ -1,0 +1,304 @@
+<div class="p-3 demo">
+  <div class="grid grid-cols-12 gap-3">
+    <div class="col-span-3 flex flex-col justify-between">
+      <div>
+        <div
+          class="bg-red-400 py-2 text-center rounded-md text-white font-semibold"
+        >
+          {{ getFormattedTime() }}
+        </div>
+        <div class="flex flex-col gap-4 mt-8">
+          <div class="flex gap-3 items-center">
+            <ng-icon
+              class="text-2xl font-extrabold text-teal-600"
+              name="ionTimerOutline"
+            ></ng-icon>
+            <div class="">Time : <b class="font-semibold">30 Minute</b></div>
+          </div>
+          <div class="flex gap-3 items-center">
+            <ng-icon
+              class="text-2xl font-extrabold text-teal-600"
+              name="ionTrophyOutline"
+            ></ng-icon>
+            <div class="">Total Mark : <b class="font-semibold">60</b></div>
+          </div>
+          <div class="flex gap-3 items-center">
+            <ng-icon
+              class="text-2xl font-extrabold text-teal-600"
+              name="ionRocketOutline"
+            ></ng-icon>
+            <div class="">Total Attempt : <b class="font-semibold">2</b></div>
+          </div>
+
+          <div class="flex gap-3 items-center">
+            <ng-icon
+              class="text-2xl font-extrabold text-teal-600"
+              name="ionNewspaperOutline"
+            ></ng-icon>
+            <div class="">
+              Number of Question : <b class="font-semibold">10</b>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <hr class="my-3" />
+        <div class="flex items-start gap-2">
+          <div
+            class="bg-gray-600 h-8 w-16 flex justify-center items-center text-white font-semibold rounded-md"
+          >
+            <ng-icon class="text-xl" name="heroMegaphone"></ng-icon>
+          </div>
+          <p class="text-gray-500 text-sm">
+            Assessment will automatically submitted when timer reaches to
+            <b>0:0</b>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-span-6 questions">
+      <div class="flex flex-col gap-3">
+        <div class="px-3 w-full h-full">
+          <div class="flex justify-between items-center">
+            <h3 class="text-lg text-teal-600">
+              <span class="font-semibold ml-1">Q:</span> Question
+            </h3>
+            <p class="font-semibold text-sm">2:50</p>
+          </div>
+          <hr class="my-2" />
+          <div class="my-3 grid grid-cols-12 gap-4">
+            <!-- option 1  -->
+            <div
+              class="col-span-6 flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md"
+            >
+              <div
+                class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+              >
+                A
+              </div>
+              <h5>Option 1</h5>
+            </div>
+            <!-- option 2  -->
+            <div
+              class="col-span-6 flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md"
+            >
+              <div
+                class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+              >
+                B
+              </div>
+              <h5>Option 2</h5>
+            </div>
+            <!-- option 3  -->
+            <div
+              class="col-span-6 flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md"
+            >
+              <div
+                class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+              >
+                C
+              </div>
+              <h5>Option 3</h5>
+            </div>
+            <!-- option 4  -->
+            <div
+              class="col-span-6 flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md"
+            >
+              <div
+                class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+              >
+                D
+              </div>
+              <h5>Option 4</h5>
+            </div>
+            <!-- option 5  -->
+            <div
+              class="col-span-6 flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md"
+            >
+              <div
+                class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+              >
+                E
+              </div>
+              <h5>Option 5</h5>
+            </div>
+          </div>
+        </div>
+        <div class="px-3 w-full h-full">
+          <h3 class="text-lg text-teal-600">
+            <span class="font-semibold ml-1">Q:</span> Question
+          </h3>
+          <hr class="my-2" />
+          <div class="my-3 grid grid-cols-12 gap-4">
+            <!-- option 1  -->
+            <div
+              class="col-span-6 flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md"
+            >
+              <div
+                class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+              >
+                A
+              </div>
+              <h5>Option 1</h5>
+            </div>
+            <!-- option 2  -->
+            <div
+              class="col-span-6 flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md"
+            >
+              <div
+                class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+              >
+                B
+              </div>
+              <h5>Option 2</h5>
+            </div>
+            <!-- option 3  -->
+            <div
+              class="col-span-6 flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md"
+            >
+              <div
+                class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+              >
+                C
+              </div>
+              <h5>Option 3</h5>
+            </div>
+            <!-- option 4  -->
+            <div
+              class="col-span-6 flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md"
+            >
+              <div
+                class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+              >
+                D
+              </div>
+              <h5>Option 4</h5>
+            </div>
+            <!-- option 5  -->
+            <div
+              class="col-span-6 flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md"
+            >
+              <div
+                class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+              >
+                E
+              </div>
+              <h5>Option 5</h5>
+            </div>
+          </div>
+        </div>
+        <div class="px-3 w-full h-full">
+          <h3 class="text-lg text-teal-600">
+            <span class="font-semibold ml-1">Q:</span> Question
+          </h3>
+          <hr class="my-2" />
+          <div class="my-3 grid grid-cols-12 gap-4">
+            <!-- option 1  -->
+            <div
+              class="col-span-6 flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md"
+            >
+              <div
+                class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+              >
+                A
+              </div>
+              <h5>Option 1</h5>
+            </div>
+            <!-- option 2  -->
+            <div
+              class="col-span-6 flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md"
+            >
+              <div
+                class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+              >
+                B
+              </div>
+              <h5>Option 2</h5>
+            </div>
+            <!-- option 3  -->
+            <div
+              class="col-span-6 flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md"
+            >
+              <div
+                class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+              >
+                C
+              </div>
+              <h5>Option 3</h5>
+            </div>
+            <!-- option 4  -->
+            <div
+              class="col-span-6 flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md"
+            >
+              <div
+                class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+              >
+                D
+              </div>
+              <h5>Option 4</h5>
+            </div>
+            <!-- option 5  -->
+            <div
+              class="col-span-6 flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md"
+            >
+              <div
+                class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+              >
+                E
+              </div>
+              <h5>Option 5</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-span-3 flex flex-col justify-between">
+      <div>
+        <div
+          class="shadow-md bg-gray-100 rounded-md p-3 w-full flex justify-center"
+        >
+          <mat-progress-spinner
+            class="progress_bar"
+            mode="determinate"
+            value="50"
+          >
+          </mat-progress-spinner>
+        </div>
+        <div class="my-5 flex flex-wrap gap-3">
+          <div
+            class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+          >
+            A
+          </div>
+          <div
+            class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+          >
+            A
+          </div>
+          <div
+            class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+          >
+            A
+          </div>
+          <div
+            class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+          >
+            A
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 w-full">
+        <button
+          class="bg-red-600 py-1 rounded-md text-white font-semibold text-sm w-full"
+        >
+          Quite
+        </button>
+        <button
+          class="bg-teal-600 py-1 rounded-md text-white font-semibold text-sm w-full"
+        >
+          Finish
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

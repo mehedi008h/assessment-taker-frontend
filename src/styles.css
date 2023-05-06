@@ -33,3 +33,30 @@ body {
   height: 20px !important;
   width: 20px !important;
 }
+
+/* navbar  */
+.link {
+  position: relative;
+  display: block;
+  transition: 0.5s;
+}
+.link::after {
+  position: absolute;
+  content: "";
+  top: 100%;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background: #0d6efd;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s;
+}
+
+.link:hover {
+  color: #0d6efd !important;
+}
+.link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}

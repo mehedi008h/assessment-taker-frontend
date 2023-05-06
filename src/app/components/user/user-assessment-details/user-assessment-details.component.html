@@ -24,9 +24,10 @@
           Back to Assessment
         </button>
         <button
+          (click)="openDemoAssessment()"
           class="border border-gray-600 px-6 py-2 rounded-full text-black font-semibold text-sm"
         >
-          Back to Assessment
+          View Demo Assessment
         </button>
         <button
           (click)="openDialog()"
@@ -39,28 +40,28 @@
     <div class="grid grid-cols-12 gap-2">
       <div class="col-span-7">
         <div class="mt-8 flex flex-col gap-5">
-          <div class="flex gap-2 items-center">
+          <div class="flex gap-3 items-center">
             <ng-icon
               class="text-2xl font-extrabold text-teal-600"
               name="ionBowlingBallOutline"
             ></ng-icon>
             <div class="">Category :</div>
           </div>
-          <div class="flex gap-2 items-center">
+          <div class="flex gap-3 items-center">
             <ng-icon
               class="text-2xl font-extrabold text-teal-600"
               name="ionTimerOutline"
             ></ng-icon>
             <div class="">Time :</div>
           </div>
-          <div class="flex gap-2 items-center">
+          <div class="flex gap-3 items-center">
             <ng-icon
               class="text-2xl font-extrabold text-teal-600"
               name="ionTrophyOutline"
             ></ng-icon>
             <div class="">Total Mark :</div>
           </div>
-          <div class="flex gap-2 items-center">
+          <div class="flex gap-3 items-center">
             <ng-icon
               class="text-2xl font-extrabold text-teal-600"
               name="ionRocketOutline"
@@ -68,14 +69,14 @@
             <div class="">Total Attempt :</div>
           </div>
 
-          <div class="flex gap-2 items-center">
+          <div class="flex gap-3 items-center">
             <ng-icon
               class="text-2xl font-extrabold text-teal-600"
               name="ionNewspaperOutline"
             ></ng-icon>
             <div class="">Number of Question :</div>
           </div>
-          <div class="flex gap-2 items-center">
+          <div class="flex gap-3 items-center">
             <ng-icon
               class="text-2xl font-extrabold text-teal-600"
               name="heroUserGroup"
@@ -130,20 +131,27 @@
               </p>
             </div>
           </div>
-          <div class="mt-5 flex items-center gap-3 justify-center">
+          <div
+            (click)="onRead()"
+            class="mt-5 flex items-center gap-3 justify-center cursor-pointer"
+          >
             <ng-icon
               *ngIf="!readInstruction"
-              (click)="onRead()"
               name="ionCheckboxOutline"
               class="cursor-pointer"
+              [ngClass]="errorMessage ? 'text-red-500' : 'text-gray-500'"
             ></ng-icon>
             <ng-icon
               *ngIf="readInstruction"
-              (click)="onRead()"
               name="ionCheckbox"
               class="text-blue-500 cursor-pointer"
             ></ng-icon>
-            <p class="text-gray-500 text-sm">Read the instruction cearfully</p>
+            <p
+              class="text-sm"
+              [ngClass]="errorMessage ? 'text-red-500' : 'text-gray-500'"
+            >
+              Read the instruction cearfully
+            </p>
           </div>
         </div>
       </div>

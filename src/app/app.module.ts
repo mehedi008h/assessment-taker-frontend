@@ -76,6 +76,7 @@ import { HomeComponent } from './components/home/home.component';
 import { UserAssessmentComponent } from './components/user/user-assessment/user-assessment.component';
 import { UserAssessmentDetailsComponent } from './components/user/user-assessment-details/user-assessment-details.component';
 import { ConfirmAssessmentComponent } from './components/user/confirm-assessment/confirm-assessment.component';
+import { DemoAssessmentComponent } from './components/user/demo-assessment/demo-assessment.component';
 
 @NgModule({
   declarations: [
@@ -104,6 +105,7 @@ import { ConfirmAssessmentComponent } from './components/user/confirm-assessment
     UserAssessmentComponent,
     UserAssessmentDetailsComponent,
     ConfirmAssessmentComponent,
+    DemoAssessmentComponent,
   ],
   imports: [
     BrowserModule,
