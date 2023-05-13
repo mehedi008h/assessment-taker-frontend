@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Assessment } from 'src/app/models/assessment.model';
 
 @Component({
@@ -10,12 +11,18 @@ import { Assessment } from 'src/app/models/assessment.model';
 export class ConfirmAssessmentComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Assessment,
-    public dialogRef: MatDialogRef<ConfirmAssessmentComponent>
+    public dialogRef: MatDialogRef<ConfirmAssessmentComponent>,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
 
   closeDialog() {
     this.dialogRef.close();
+  }
+
+  onStartAssessment(): void {
+    this.closeDialog();
+    this.router.navigateByUrl('/assessments/start-assessment/2');
   }
 }

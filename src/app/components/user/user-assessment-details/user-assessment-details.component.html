@@ -18,11 +18,12 @@
         laudantium excepturi.
       </p>
       <div class="flex items-center gap-5 mt-5">
-        <button
+        <a
+          routerLink="/assessments"
           class="bg-black px-6 py-2 rounded-full text-white font-semibold text-sm"
         >
           Back to Assessment
-        </button>
+        </a>
         <button
           (click)="openDemoAssessment()"
           class="border border-gray-600 px-6 py-2 rounded-full text-black font-semibold text-sm"
@@ -81,7 +82,39 @@
               class="text-2xl font-extrabold text-teal-600"
               name="heroUserGroup"
             ></ng-icon>
-            <div class="">Total user taken :</div>
+            <div class="flex flex-row gap-2 items-center">
+              <span>Total user taken :</span>
+              <div class="flex flex-row">
+                <div class="h-8 w-8 bg-gray-500 rounded-full border"></div>
+                <div
+                  class="h-8 w-8 bg-gray-500 rounded-full -ml-2.5 border"
+                ></div>
+                <div
+                  class="h-8 w-8 bg-gray-500 rounded-full -ml-2.5 border"
+                ></div>
+                <div
+                  class="h-8 w-8 bg-gray-500 rounded-full -ml-2.5 border"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <!-- required skills are  -->
+          <div class="flex flex-row flex-wrap gap-2 mt-4">
+            <div
+              class="bg-gray-500 px-3 py-1 rounded-md text-white text-xs font-semibold font-merriweather"
+            >
+              Database
+            </div>
+            <div
+              class="bg-gray-500 px-3 py-1 rounded-md text-white text-xs font-semibold font-merriweather"
+            >
+              OOP
+            </div>
+            <div
+              class="bg-gray-500 px-3 py-1 rounded-md text-white text-xs font-semibold font-merriweather"
+            >
+              React.js
+            </div>
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NgIconsModule } from '@ng-icons/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
@@ -77,6 +77,7 @@ import { UserAssessmentComponent } from './components/user/user-assessment/user-
 import { UserAssessmentDetailsComponent } from './components/user/user-assessment-details/user-assessment-details.component';
 import { ConfirmAssessmentComponent } from './components/user/confirm-assessment/confirm-assessment.component';
 import { DemoAssessmentComponent } from './components/user/demo-assessment/demo-assessment.component';
+import { StartAssessmentComponent } from './components/user/start-assessment/start-assessment.component';
 
 @NgModule({
   declarations: [
@@ -106,11 +107,13 @@ import { DemoAssessmentComponent } from './components/user/demo-assessment/demo-
     UserAssessmentDetailsComponent,
     ConfirmAssessmentComponent,
     DemoAssessmentComponent,
+    StartAssessmentComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
     MatSnackBarModule,
     MatDialogModule,

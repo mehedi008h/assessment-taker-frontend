@@ -60,3 +60,21 @@ body {
   transform: scaleX(1);
   transform-origin: left;
 }
+
+/* Scroll Bar */
+
+::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(133, 46, 46, 0.2);
+  border: 0px;
+  background-clip: padding-box;
+  border-radius: 5px;
+}

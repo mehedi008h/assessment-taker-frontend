@@ -18,6 +18,7 @@ import { AdminHomeComponent } from './components/admin/admin-home/admin-home.com
 import { HomeComponent } from './components/home/home.component';
 import { UserAssessmentComponent } from './components/user/user-assessment/user-assessment.component';
 import { UserAssessmentDetailsComponent } from './components/user/user-assessment-details/user-assessment-details.component';
+import { StartAssessmentComponent } from './components/user/start-assessment/start-assessment.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: 'assessments/:assessmentIdentifier',
     component: UserAssessmentDetailsComponent,
+  },
+  {
+    path: 'assessments/start-assessment/:assessmentIdentifier',
+    component: StartAssessmentComponent,
   },
   {
     path: 'admin',
