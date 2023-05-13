@@ -33,6 +33,15 @@ export class QuestionService {
     );
   }
 
+  // get question of an assessment => User
+  public getQuestionsOfUser(
+    assessmentIdentifier: string
+  ): Observable<Question[]> {
+    return this.http.get<Question[]>(
+      `${this.host}/question/assessment/${assessmentIdentifier}`
+    );
+  }
+
   // get single question
   public getQuestion(questionIdentifier: string): Observable<Question> {
     return this.http.get<Question>(

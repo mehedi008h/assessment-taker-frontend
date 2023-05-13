@@ -1,193 +1,215 @@
 <div class="bg-white min-h-screen">
   <app-navbar></app-navbar>
   <div class="w-3/5 mx-auto my-3">
-    <div class="flex flex-col justify-center gap-3 items-center my-8">
-      <div class="flex items-center gap-2">
-        <div
-          class="bg-title h-8 w-8 flex justify-center items-center text-white font-semibold rounded-md"
-        >
-          <ng-icon class="text-xl" name="heroMegaphone"></ng-icon>
+    <ng-container *ngIf="assessment; else failureOrLoading">
+      <div class="flex flex-col justify-center gap-3 items-center my-8">
+        <div class="flex items-center gap-2">
+          <div
+            class="bg-title h-8 w-8 flex justify-center items-center text-white font-semibold rounded-md"
+          >
+            <ng-icon class="text-xl" name="heroMegaphone"></ng-icon>
+          </div>
+          <div class="font-semibold text-2xl">{{ assessment.title }}</div>
         </div>
-        <div class="font-semibold text-2xl">Title</div>
-      </div>
 
-      <p class="text-gray-500 text-sm w-11/12 mt-2">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit libero,
-        atque dolorum rerum earum quae repudiandae, maiores nobis tenetur ad
-        beatae, aperiam labore ducimus sunt perspiciatis provident quas
-        laudantium excepturi.
-      </p>
-      <div class="flex items-center gap-5 mt-5">
-        <a
-          routerLink="/assessments"
-          class="bg-black px-6 py-2 rounded-full text-white font-semibold text-sm"
-        >
-          Back to Assessment
-        </a>
-        <button
-          (click)="openDemoAssessment()"
-          class="border border-gray-600 px-6 py-2 rounded-full text-black font-semibold text-sm"
-        >
-          View Demo Assessment
-        </button>
-        <button
-          (click)="openDialog()"
-          class="bg-teal-600 px-6 py-2 rounded-full text-white font-semibold text-sm"
-        >
-          Start Assessment
-        </button>
+        <p class="text-gray-500 text-sm w-11/12 mt-2">
+          {{ assessment.description }}
+        </p>
+        <div class="flex items-center gap-5 mt-5">
+          <a
+            routerLink="/assessments"
+            class="bg-black px-6 py-2 rounded-full text-white font-semibold text-sm"
+          >
+            Back to Assessment
+          </a>
+          <button
+            (click)="openDemoAssessment()"
+            class="border border-gray-600 px-6 py-2 rounded-full text-black font-semibold text-sm"
+          >
+            View Demo Assessment
+          </button>
+          <button
+            (click)="openDialog()"
+            class="bg-teal-600 px-6 py-2 rounded-full text-white font-semibold text-sm"
+          >
+            Start Assessment
+          </button>
+        </div>
       </div>
-    </div>
-    <div class="grid grid-cols-12 gap-2">
-      <div class="col-span-7">
-        <div class="mt-8 flex flex-col gap-5">
-          <div class="flex gap-3 items-center">
-            <ng-icon
-              class="text-2xl font-extrabold text-teal-600"
-              name="ionBowlingBallOutline"
-            ></ng-icon>
-            <div class="">Category :</div>
-          </div>
-          <div class="flex gap-3 items-center">
-            <ng-icon
-              class="text-2xl font-extrabold text-teal-600"
-              name="ionTimerOutline"
-            ></ng-icon>
-            <div class="">Time :</div>
-          </div>
-          <div class="flex gap-3 items-center">
-            <ng-icon
-              class="text-2xl font-extrabold text-teal-600"
-              name="ionTrophyOutline"
-            ></ng-icon>
-            <div class="">Total Mark :</div>
-          </div>
-          <div class="flex gap-3 items-center">
-            <ng-icon
-              class="text-2xl font-extrabold text-teal-600"
-              name="ionRocketOutline"
-            ></ng-icon>
-            <div class="">Total Attempt :</div>
-          </div>
+      <div class="grid grid-cols-12 gap-2">
+        <div class="col-span-7">
+          <div class="mt-8 flex flex-col gap-5">
+            <div class="flex gap-3 items-center">
+              <ng-icon
+                class="text-2xl font-extrabold text-teal-600"
+                name="ionBowlingBallOutline"
+              ></ng-icon>
+              <div class="">Category : {{ assessment.category.title }}</div>
+            </div>
+            <div class="flex gap-3 items-center">
+              <ng-icon
+                class="text-2xl font-extrabold text-teal-600"
+                name="ionTimerOutline"
+              ></ng-icon>
+              <div class="">Time : {{ assessment.time }} minute</div>
+            </div>
+            <div class="flex gap-3 items-center">
+              <ng-icon
+                class="text-2xl font-extrabold text-teal-600"
+                name="ionTrophyOutline"
+              ></ng-icon>
+              <div class="">Total Mark : {{ totalMark }}</div>
+            </div>
+            <div class="flex gap-3 items-center">
+              <ng-icon
+                class="text-2xl font-extrabold text-teal-600"
+                name="ionRocketOutline"
+              ></ng-icon>
+              <div class="">Total Attempt : {{ assessment.attempt }}</div>
+            </div>
 
-          <div class="flex gap-3 items-center">
-            <ng-icon
-              class="text-2xl font-extrabold text-teal-600"
-              name="ionNewspaperOutline"
-            ></ng-icon>
-            <div class="">Number of Question :</div>
-          </div>
-          <div class="flex gap-3 items-center">
-            <ng-icon
-              class="text-2xl font-extrabold text-teal-600"
-              name="heroUserGroup"
-            ></ng-icon>
-            <div class="flex flex-row gap-2 items-center">
-              <span>Total user taken :</span>
-              <div class="flex flex-row">
-                <div class="h-8 w-8 bg-gray-500 rounded-full border"></div>
-                <div
-                  class="h-8 w-8 bg-gray-500 rounded-full -ml-2.5 border"
-                ></div>
-                <div
-                  class="h-8 w-8 bg-gray-500 rounded-full -ml-2.5 border"
-                ></div>
-                <div
-                  class="h-8 w-8 bg-gray-500 rounded-full -ml-2.5 border"
-                ></div>
+            <div class="flex gap-3 items-center">
+              <ng-icon
+                class="text-2xl font-extrabold text-teal-600"
+                name="ionNewspaperOutline"
+              ></ng-icon>
+              <div class="">Number of Question : {{ questions.length }}</div>
+            </div>
+            <div class="flex gap-3 items-center">
+              <ng-icon
+                class="text-2xl font-extrabold text-teal-600"
+                name="heroUserGroup"
+              ></ng-icon>
+              <div class="flex flex-row gap-2 items-center">
+                <span>Total user taken :</span>
+                <div class="flex flex-row">
+                  <div class="h-8 w-8 bg-gray-500 rounded-full border"></div>
+                  <div
+                    class="h-8 w-8 bg-gray-500 rounded-full -ml-2.5 border"
+                  ></div>
+                  <div
+                    class="h-8 w-8 bg-gray-500 rounded-full -ml-2.5 border"
+                  ></div>
+                  <div
+                    class="h-8 w-8 bg-gray-500 rounded-full -ml-2.5 border"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <!-- required skills are  -->
+            <div class="flex flex-row flex-wrap gap-2 mt-4">
+              <div
+                class="bg-gray-500 px-3 py-1 rounded-md text-white text-xs font-semibold font-merriweather"
+              >
+                Database
+              </div>
+              <div
+                class="bg-gray-500 px-3 py-1 rounded-md text-white text-xs font-semibold font-merriweather"
+              >
+                OOP
+              </div>
+              <div
+                class="bg-gray-500 px-3 py-1 rounded-md text-white text-xs font-semibold font-merriweather"
+              >
+                React.js
               </div>
             </div>
           </div>
-          <!-- required skills are  -->
-          <div class="flex flex-row flex-wrap gap-2 mt-4">
-            <div
-              class="bg-gray-500 px-3 py-1 rounded-md text-white text-xs font-semibold font-merriweather"
-            >
-              Database
-            </div>
-            <div
-              class="bg-gray-500 px-3 py-1 rounded-md text-white text-xs font-semibold font-merriweather"
-            >
-              OOP
-            </div>
-            <div
-              class="bg-gray-500 px-3 py-1 rounded-md text-white text-xs font-semibold font-merriweather"
-            >
-              React.js
-            </div>
-          </div>
         </div>
-      </div>
-      <!-- assessment instruction  -->
-      <div class="col-span-5">
-        <div
-          class="bg-white shadow px-3 py-5 rounded-md mt-8 border border-gray-300"
-        >
-          <h3 class="text-center font-semibold text-lg text-teal-600">
-            Assessment Instruction
-          </h3>
-          <p class="my-3 text-sm font-semibold text-gray-500">You must...</p>
-          <div class="flex items-center gap-4">
-            <ng-icon
-              class="text-2xl font-extrabold text-teal-600"
-              name="ionExpandSharp"
-            ></ng-icon>
-            <div>
-              <h3 class="font-semibold">Don't open new tab</h3>
-              <p class="text-gray-500 text-sm">
-                Switiching to another tab/window not allowed
-              </p>
-            </div>
-          </div>
-          <div class="flex items-center gap-4 my-5">
-            <ng-icon
-              class="text-2xl font-extrabold text-teal-600"
-              name="ionNewspaperOutline"
-            ></ng-icon>
-            <div>
-              <h3 class="font-semibold">Free to use pen, paper, calculator</h3>
-              <p class="text-gray-500 text-sm">
-                You can't use any thing except pen, paper, calculator
-              </p>
-            </div>
-          </div>
-          <div class="flex items-center gap-4">
-            <ng-icon
-              class="text-2xl font-extrabold text-teal-600"
-              name="ionAlarmOutline"
-            ></ng-icon>
-            <div>
-              <h3 class="font-semibold">Must follow time while answering</h3>
-              <p class="text-gray-500 text-sm">
-                Assessment will automatically save when the given time is
-                reached
-              </p>
-            </div>
-          </div>
+        <!-- assessment instruction  -->
+        <div class="col-span-5">
           <div
-            (click)="onRead()"
-            class="mt-5 flex items-center gap-3 justify-center cursor-pointer"
+            class="bg-white shadow px-3 py-5 rounded-md mt-8 border border-gray-300"
           >
-            <ng-icon
-              *ngIf="!readInstruction"
-              name="ionCheckboxOutline"
-              class="cursor-pointer"
-              [ngClass]="errorMessage ? 'text-red-500' : 'text-gray-500'"
-            ></ng-icon>
-            <ng-icon
-              *ngIf="readInstruction"
-              name="ionCheckbox"
-              class="text-blue-500 cursor-pointer"
-            ></ng-icon>
-            <p
-              class="text-sm"
-              [ngClass]="errorMessage ? 'text-red-500' : 'text-gray-500'"
+            <h3 class="text-center font-semibold text-lg text-teal-600">
+              Assessment Instruction
+            </h3>
+            <p class="my-3 text-sm font-semibold text-gray-500">You must...</p>
+            <div class="flex items-center gap-4">
+              <ng-icon
+                class="text-2xl font-extrabold text-teal-600"
+                name="ionExpandSharp"
+              ></ng-icon>
+              <div>
+                <h3 class="font-semibold">Don't open new tab</h3>
+                <p class="text-gray-500 text-sm">
+                  Switiching to another tab/window not allowed
+                </p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 my-5">
+              <ng-icon
+                class="text-2xl font-extrabold text-teal-600"
+                name="ionNewspaperOutline"
+              ></ng-icon>
+              <div>
+                <h3 class="font-semibold">
+                  Free to use pen, paper, calculator
+                </h3>
+                <p class="text-gray-500 text-sm">
+                  You can't use any thing except pen, paper, calculator
+                </p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <ng-icon
+                class="text-2xl font-extrabold text-teal-600"
+                name="ionAlarmOutline"
+              ></ng-icon>
+              <div>
+                <h3 class="font-semibold">Must follow time while answering</h3>
+                <p class="text-gray-500 text-sm">
+                  Assessment will automatically save when the given time is
+                  reached
+                </p>
+              </div>
+            </div>
+            <div
+              (click)="onRead()"
+              class="mt-5 flex items-center gap-3 justify-center cursor-pointer"
             >
-              Read the instruction cearfully
-            </p>
+              <ng-icon
+                *ngIf="!readInstruction"
+                name="ionCheckboxOutline"
+                class="cursor-pointer"
+                [ngClass]="errorMessage ? 'text-red-500' : 'text-gray-500'"
+              ></ng-icon>
+              <ng-icon
+                *ngIf="readInstruction"
+                name="ionCheckbox"
+                class="text-blue-500 cursor-pointer"
+              ></ng-icon>
+              <p
+                class="text-sm"
+                [ngClass]="errorMessage ? 'text-red-500' : 'text-gray-500'"
+              >
+                Read the instruction cearfully
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </ng-container>
   </div>
 </div>
+
+<ng-template #failureOrLoading>
+  <ng-container *ngIf="errorMessage; else loading">
+    <div class="text-red-500">
+      {{ errorMessage }}
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <div class="shadow loader">
+      <div>
+        <mat-progress-spinner
+          class="spinner"
+          color="primary"
+          mode="indeterminate"
+        ></mat-progress-spinner>
+      </div>
+
+      <span>Processing...</span>
+    </div>
+  </ng-template>
+</ng-template>
