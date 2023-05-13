@@ -1,83 +1,130 @@
 <div class="bg-gray-100 min-h-screen">
   <app-navbar></app-navbar>
   <div class="w-4/5 mx-auto my-3">
-    <!-- header  -->
-    <div class="flex justify-between items-center gap-4">
+    <ng-container
+      *ngIf="assessments$ | async as listAssessment; else failureOrLoading"
+    >
+      <!-- header  -->
       <div
-        class="border border-gray-500 rounded-md ps-3 w-full h-10 flex items-center"
+        *ngIf="searchFormGroup"
+        class="flex justify-between items-center gap-4"
       >
-        <input
-          type="text"
-          class="outline-none w-full bg-inherit text-gray-400 text-sm"
-          placeholder="Search for activity ..."
-        />
-      </div>
-      <div
-        class="w-96 h-10 border border-gray-500 rounded-md px-3 flex items-center justify-between"
-      >
-        <h3 class="font-semibold">Filter</h3>
-        2
-      </div>
-    </div>
-    <!-- assessment  -->
-    <div class="my-4">
-      <div class="grid grid-cols-12 gap-3">
-        <a
-          routerLink="/assessments/2"
-          class="col-span-4 bg-white rounded-md p-2"
+        <div
+          class="border border-gray-500 rounded-md ps-3 w-full h-10 flex items-center"
         >
-          <div class="w-full h-32 bg-gray-100 rounded-md relative">
-            <div
-              class="bg-teal-500 px-3 py-1 rounded-full flex items-center gap-2 w-fit absolute top-2 right-2 z-10"
-            >
-              <ng-icon
-                class="text-lg text-white"
-                name="ionTimerOutline"
-              ></ng-icon>
-              <p class="text-gray-100 text-sm">120 minute</p>
-            </div>
-          </div>
-          <h3 class="font-semibold text-lg mt-2">Title</h3>
-          <p class="text-gray-500 text-sm">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio
-            magni omnis animi necessitatibus eligendi nemo?
-          </p>
-          <div class="mt-3 flex items-center justify-between">
-            <div class="flex gap-2 items-center">
-              <ng-icon
-                class="text-2xl font-extrabold text-teal-600"
-                name="ionBowlingBallOutline"
-              ></ng-icon>
-              <div class="">Category</div>
-            </div>
-            <div class="flex gap-2 items-center">
-              <ng-icon
-                class="text-2xl font-extrabold text-teal-600"
-                name="heroUserGroup"
-              ></ng-icon>
-              <div class="">user taken</div>
-            </div>
-          </div>
-          <!-- required skills are  -->
-          <div class="flex flex-row flex-wrap gap-2 mt-4">
-            <div
-              class="bg-gray-500 px-3 py-1 rounded-md text-white text-xs font-semibold font-merriweather"
-            >
-              Database
-            </div>
-            <div
-              class="bg-gray-500 px-3 py-1 rounded-md text-white text-xs font-semibold font-merriweather"
-            >
-              OOP
-            </div>
-            <div
-              class="bg-gray-500 px-3 py-1 rounded-md text-white text-xs font-semibold font-merriweather"
-            >
-              React.js
-            </div>
-          </div>
-        </a>
+          <form [formGroup]="searchFormGroup" (ngSubmit)="getAssessments()">
+            <input
+              type="text"
+              class="outline-none w-full bg-inherit text-gray-400 text-sm"
+              placeholder="Search for activity ..."
+              formControlName="keyword"
+            />
+          </form>
+        </div>
+        <div
+          class="w-96 h-10 border border-gray-500 rounded-md px-3 flex items-center justify-between"
+        >
+          <h3 class="font-semibold">Filter</h3>
+          2
+        </div>
       </div>
-    </div>
+      <!-- assessment  -->
+      <div class="my-4">
+        <div class="grid grid-cols-12 gap-3">
+          <a
+            *ngFor="let a of listAssessment?.content"
+            [routerLink]="['/assessments/' + a.assessmentIdentifier]"
+            class="col-span-4 bg-white rounded-md p-2"
+          >
+            <div class="w-full h-32 bg-gray-100 rounded-md relative">
+              <div
+                class="bg-teal-500 px-3 py-1 rounded-full flex items-center gap-2 w-fit absolute top-2 right-2 z-10"
+              >
+                <ng-icon
+                  class="text-lg text-white"
+                  name="ionTimerOutline"
+                ></ng-icon>
+                <p class="text-gray-100 text-sm">
+                  <b>{{ a.time }}</b> minute
+                </p>
+              </div>
+            </div>
+            <h3 class="font-semibold text-lg mt-2">{{ a.title }}</h3>
+            <p class="text-gray-500 text-sm">
+              {{ a.description }}
+            </p>
+            <div class="mt-3 flex items-center justify-between">
+              <div class="flex gap-2 items-center">
+                <ng-icon
+                  class="text-2xl font-extrabold text-teal-600"
+                  name="ionBowlingBallOutline"
+                ></ng-icon>
+                <div class="">{{ a.category.title }}</div>
+              </div>
+              <div class="flex gap-2 items-center">
+                <ng-icon
+                  class="text-2xl font-extrabold text-teal-600"
+                  name="heroUserGroup"
+                ></ng-icon>
+                <div class="">{{ a.totalTaken }} user taken</div>
+              </div>
+            </div>
+            <!-- required skills are  -->
+            <div class="flex flex-row flex-wrap gap-2 mt-4">
+              <div
+                class="bg-gray-500 px-3 py-1 rounded-md text-white text-xs font-semibold font-merriweather"
+              >
+                Database
+              </div>
+              <div
+                class="bg-gray-500 px-3 py-1 rounded-md text-white text-xs font-semibold font-merriweather"
+              >
+                OOP
+              </div>
+              <div
+                class="bg-gray-500 px-3 py-1 rounded-md text-white text-xs font-semibold font-merriweather"
+              >
+                React.js
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <ul class="flex justify-center my-5">
+        <li
+          *ngFor="
+            let item of [].constructor(listAssessment.totalPages);
+            let page = index
+          "
+        >
+          <a
+            [ngClass]="page == currentPage ? 'bg-yellow-600' : 'bg-gray-600'"
+            (click)="gotoPage(page)"
+            class="text-white py-1 px-3 rounded-full font-semibold text-xs"
+            >{{ page }}</a
+          >
+        </li>
+      </ul>
+    </ng-container>
   </div>
 </div>
+
+<ng-template #failureOrLoading>
+  <ng-container *ngIf="errorMessage; else loading">
+    <div class="text-red-500">
+      {{ errorMessage }}
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <div class="shadow loader">
+      <div>
+        <mat-progress-spinner
+          class="spinner"
+          color="primary"
+          mode="indeterminate"
+        ></mat-progress-spinner>
+      </div>
+      <span>Processing...</span>
+    </div>
+  </ng-template>
+</ng-template>
