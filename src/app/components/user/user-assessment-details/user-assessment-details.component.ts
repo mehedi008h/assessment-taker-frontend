@@ -57,7 +57,10 @@ export class UserAssessmentDetailsComponent implements OnInit {
     }
 
     dialogConfig.data = {
-      title: '',
+      assessmentIdentifier: this.assessment.assessmentIdentifier,
+      title: this.assessment.title,
+      time: this.assessment.time,
+      attempt: this.assessment.attempt,
     };
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;

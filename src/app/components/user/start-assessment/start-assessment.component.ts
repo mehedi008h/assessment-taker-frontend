@@ -1,7 +1,12 @@
-import { LocationStrategy } from '@angular/common';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subject, fromEvent, takeUntil } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { Subject, fromEvent, takeUntil, Subscription } from 'rxjs';
+import { Assessment } from 'src/app/models/assessment.model';
+import { Question } from 'src/app/models/question.model';
+import { AssessmentService } from 'src/app/services/assessment.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { QuestionService } from 'src/app/services/question.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -10,69 +15,39 @@ import Swal from 'sweetalert2';
   styleUrls: ['./start-assessment.component.css'],
 })
 export class StartAssessmentComponent implements OnInit, OnDestroy {
-  time: any = 6 * 60;
+  public assessmentIdentifier!: string;
+  public assessment!: Assessment;
+  public questions!: Question[];
+  private subscriptions: Subscription[] = [];
+  public refreshing!: boolean;
+  public showLoading!: boolean;
+  readInstruction: boolean = false;
+  totalMark: number = 0;
+  error: boolean = true;
+  errorMessage!: string;
+  time!: number;
+  markGot: number = 0;
+  correctAnswers: number = 0;
   private unsubscriber: Subject<void> = new Subject<void>();
-  assessments = [
-    {
-      id: 1,
-      content: 'The Bellmann Ford Algorithm returns __________  value?',
-      option1: 'String',
-      option2: 'Boolean',
-      option3: 'Double',
-      option4: 'Integer',
-      answer: 'Boolean',
-      mark: 2,
-      givenAnswer: '',
-    },
-    {
-      id: 2,
-      content:
-        'Which of the following is used for solving the N Queens Problem?',
-      option1: 'Greedy algorithm',
-      option2: 'Dynamic Programing',
-      option3: 'Backtracking',
-      option4: 'Sorting',
-      answer: 'Backtracking',
-      mark: 1.5,
-      givenAnswer: '',
-    },
-    {
-      id: 3,
-      content: 'The function f : A → B defined by f(x) = 4x + 7, x ∈ R is',
-      option1: 'one-one',
-      option2: 'Many-one',
-      option3: 'Odd',
-      option4: 'Even',
-      answer: 'one-one',
-      mark: 3,
-      givenAnswer: '',
-    },
-    {
-      id: 4,
-      content:
-        'The number of bijective functions from set A to itself when A contains 106 elements is',
-      option1: '106',
-      option2: '(106)2',
-      option3: '106!',
-      option4: '2106',
-      answer: '106!',
-      mark: 3,
-      givenAnswer: '',
-    },
-  ];
+
   constructor(
-    private locationSt: LocationStrategy,
+    private route: ActivatedRoute,
+    private questionsService: QuestionService,
+    private assessmentService: AssessmentService,
     public notification: NotificationService
   ) {}
 
   ngOnInit(): void {
+    // get identifier from route
+    this.assessmentIdentifier =
+      this.route.snapshot.params['assessmentIdentifier'];
     this.preventBackButton();
-    this.startAssessment();
+    this.getAssessment();
+    this.getQuestions();
   }
 
   preventBackButton() {
     history.pushState(null, '');
-
     fromEvent(window, 'popstate')
       .pipe(takeUntil(this.unsubscriber))
       .subscribe((_) => {
@@ -83,11 +58,45 @@ export class StartAssessmentComponent implements OnInit, OnDestroy {
       });
   }
 
-  startAssessment() {
-    this.startTimer();
+  // get assessment
+  public getAssessment(): void {
+    this.subscriptions.push(
+      this.assessmentService.getAssessment(this.assessmentIdentifier).subscribe(
+        (response: Assessment) => {
+          this.assessment = response;
+          this.time = this.assessment.time * 60;
+        },
+        (errorResponse: HttpErrorResponse) => {
+          this.notification.notify(errorResponse.error.message);
+        }
+      )
+    );
   }
 
-  submitQuiz() {
+  // get questions of assessment
+  public getQuestions() {
+    this.subscriptions.push(
+      this.questionsService
+        .getQuestionsOfUser(this.assessmentIdentifier)
+        .subscribe(
+          (response: Question[]) => {
+            this.questions = response;
+            // calculate total mark
+            this.totalMark = this.questions.reduce((sum, q) => sum + q.mark, 0);
+            this.questions.forEach((q) => {
+              q['givenAnswer'] = '';
+            });
+            this.startTimer();
+            console.log('Questions', this.questions);
+          },
+          (errorResponse: HttpErrorResponse) => {
+            this.notification.notify(errorResponse.error.message);
+          }
+        )
+    );
+  }
+
+  submitAssessment() {
     Swal.fire({
       title: 'Do you want to submit the assessment?',
       showCancelButton: true,
@@ -96,10 +105,12 @@ export class StartAssessmentComponent implements OnInit, OnDestroy {
       icon: 'info',
     }).then((e) => {
       if (e.isConfirmed) {
+        this.evalQuiz();
       }
     });
   }
 
+  // cancel & save assessmnet
   onCancleAssessment() {
     Swal.fire({
       title: 'Do you want to quite the assessment?',
@@ -109,14 +120,50 @@ export class StartAssessmentComponent implements OnInit, OnDestroy {
       icon: 'warning',
     }).then((e) => {
       if (e.isConfirmed) {
+        this.evalQuiz();
       }
     });
+  }
+
+  evalQuiz() {
+    //calculation
+    this.subscriptions.push(
+      this.assessmentService
+        .evalAssessment(this.questions, this.assessmentIdentifier)
+        .subscribe(
+          (response: HttpResponse<Question[]>) => {
+            this.showLoading = false;
+            this.notification.notify('Assesment Saved Successfully');
+            console.log('Response : ', response);
+          },
+          (errorResponse: HttpErrorResponse) => {
+            this.showLoading = false;
+            this.notification.notify(errorResponse.error.message);
+          }
+        )
+    );
+    this.questions.forEach((q) => {
+      if (q.givenAnswer == q.questionAnswer) {
+        this.correctAnswers++;
+        this.markGot = this.markGot + q.mark;
+      }
+    });
+
+    console.log('Correct Answers :' + this.correctAnswers);
+    console.log('Marks Got ' + this.markGot);
+
+    console.log(this.questions);
+  }
+
+  getParcent(): number {
+    return Math.floor(((this.time / 60) * 100) / this.assessment.time);
   }
 
   startTimer() {
     let t = window.setInterval(() => {
       //code
       if (this.time <= 0) {
+        this.evalQuiz();
         clearInterval(t);
       } else {
         this.time--;

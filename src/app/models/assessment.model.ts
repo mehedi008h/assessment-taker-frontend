@@ -5,7 +5,7 @@ export interface Assessment {
   id: number;
   assessmentIdentifier: string;
   title: string;
-  time: string;
+  time: number;
   attempt: number;
   description: string;
   imageUrl: string;

@@ -23,6 +23,8 @@ export class ConfirmAssessmentComponent implements OnInit {
 
   onStartAssessment(): void {
     this.closeDialog();
-    this.router.navigateByUrl('/assessments/start-assessment/2');
+    this.router.navigateByUrl(
+      `/assessments/start-assessment/${this.data.assessmentIdentifier}`
+    );
   }
 }

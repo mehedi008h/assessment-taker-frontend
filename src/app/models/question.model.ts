@@ -12,5 +12,6 @@ export interface Question {
   mark: number;
   imageUrl: string;
   questionAnswer: string;
+  givenAnswer: string;
   assessment: Assessment;
 }

@@ -1,228 +1,264 @@
 <div class="bg-white min-h-screen">
   <app-navbar></app-navbar>
   <div class="w-11/12 mx-auto my-3">
-    <div class="p-3 w-full">
-      <div class="grid grid-cols-12 gap-3">
-        <div class="col-span-3 flex flex-col justify-between border-r-2 px-3">
-          <div>
-            <div
-              class="bg-red-400 py-2 text-center rounded-md text-white font-semibold"
-            >
-              {{ getFormattedTime() }}
-            </div>
-            <div class="flex flex-col gap-4 mt-8">
-              <div class="flex gap-3 items-center">
-                <ng-icon
-                  class="text-2xl font-extrabold text-teal-600"
-                  name="ionTimerOutline"
-                ></ng-icon>
-                <div class="">
-                  Time : <b class="font-semibold">30 Minute</b>
-                </div>
-              </div>
-              <div class="flex gap-3 items-center">
-                <ng-icon
-                  class="text-2xl font-extrabold text-teal-600"
-                  name="ionTrophyOutline"
-                ></ng-icon>
-                <div class="">Total Mark : <b class="font-semibold">60</b></div>
-              </div>
-              <div class="flex gap-3 items-center">
-                <ng-icon
-                  class="text-2xl font-extrabold text-teal-600"
-                  name="ionRocketOutline"
-                ></ng-icon>
-                <div class="">
-                  Total Attempt : <b class="font-semibold">2</b>
-                </div>
-              </div>
-
-              <div class="flex gap-3 items-center">
-                <ng-icon
-                  class="text-2xl font-extrabold text-teal-600"
-                  name="ionNewspaperOutline"
-                ></ng-icon>
-                <div class="">
-                  Number of Question : <b class="font-semibold">10</b>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <hr class="my-3" />
-            <div class="flex items-start gap-2">
+    <ng-container *ngIf="questions; else failureOrLoading">
+      <div class="p-3 w-full">
+        <div class="grid grid-cols-12 gap-3">
+          <div class="col-span-3 flex flex-col justify-between border-r-2 px-3">
+            <div>
               <div
-                class="bg-gray-600 h-8 w-16 flex justify-center items-center text-white font-semibold rounded-md"
+                class="bg-red-400 py-2 text-center rounded-md text-white font-semibold"
               >
-                <ng-icon class="text-xl" name="heroMegaphone"></ng-icon>
+                {{ getFormattedTime() }}
               </div>
-              <p class="text-gray-500 text-sm">
-                Assessment will automatically submitted when timer reaches to
-                <b>0:0</b>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-span-6 questions">
-          <div class="flex flex-col gap-3">
-            <!-- question  -->
-            <div
-              *ngFor="let a of assessments; let i = index"
-              class="px-3 w-full h-full"
-            >
-              <div class="flex justify-between items-start gap-1">
-                <h3 class="font-medium">
-                  <span class="font-semibold ml-1">{{ i + 1 }} :</span>
-                  {{ a.content }}
-                </h3>
-                <p class="font-semibold text-sm text-gray-500">{{ a.mark }}</p>
-              </div>
+              <div class="flex flex-col gap-4 mt-8">
+                <div class="flex gap-3 items-center">
+                  <ng-icon
+                    class="text-2xl font-extrabold text-teal-600"
+                    name="ionTimerOutline"
+                  ></ng-icon>
+                  <div class="">
+                    Time :
+                    <b class="font-semibold">{{ assessment.time }} Minute</b>
+                  </div>
+                </div>
+                <div class="flex gap-3 items-center">
+                  <ng-icon
+                    class="text-2xl font-extrabold text-teal-600"
+                    name="ionTrophyOutline"
+                  ></ng-icon>
+                  <div class="">
+                    Total Mark : <b class="font-semibold">{{ totalMark }}</b>
+                  </div>
+                </div>
+                <div class="flex gap-3 items-center">
+                  <ng-icon
+                    class="text-2xl font-extrabold text-teal-600"
+                    name="ionRocketOutline"
+                  ></ng-icon>
+                  <div class="">
+                    Total Attempt :
+                    <b class="font-semibold">{{ assessment.attempt }}</b>
+                  </div>
+                </div>
 
-              <div class="my-3 grid grid-cols-12 gap-4">
-                <!-- option 1  -->
-                <label
-                  for="option1"
-                  class="col-span-6 flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md"
-                  [ngClass]="
-                    a.givenAnswer === a.option1
-                      ? 'bg-teal-500 hover:bg-teal-500 text-white'
-                      : 'text-gray-700'
-                  "
-                >
-                  <div
-                    class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
-                  >
-                    A
+                <div class="flex gap-3 items-center">
+                  <ng-icon
+                    class="text-2xl font-extrabold text-teal-600"
+                    name="ionNewspaperOutline"
+                  ></ng-icon>
+                  <div class="">
+                    Number of Question :
+                    <b class="font-semibold">{{ questions.length }}</b>
                   </div>
-                  <input
-                    type="radio"
-                    id="option1"
-                    class="hidden"
-                    [value]="a.option1"
-                    [name]="a.option1"
-                    [(ngModel)]="a.givenAnswer"
-                  />
-                  <h5>{{ a.option1 }}</h5>
-                </label>
-                <!-- option 2  -->
-                <label
-                  for="option2"
-                  class="col-span-6 flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md"
-                  [ngClass]="
-                    a.givenAnswer === a.option2
-                      ? 'bg-teal-500 hover:bg-teal-500 text-white'
-                      : 'text-gray-700'
-                  "
-                >
-                  <div
-                    class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
-                  >
-                    B
-                  </div>
-                  <input
-                    type="radio"
-                    id="option2"
-                    class="hidden"
-                    [value]="a.option2"
-                    [name]="a.option2"
-                    [(ngModel)]="a.givenAnswer"
-                  />
-                  <h5>{{ a.option2 }}</h5>
-                </label>
-                <!-- option 3  -->
-                <label
-                  for="option3"
-                  class="col-span-6 flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md"
-                  [ngClass]="
-                    a.givenAnswer === a.option3
-                      ? 'bg-teal-500 hover:bg-teal-500 text-white'
-                      : 'text-gray-700'
-                  "
-                >
-                  <div
-                    class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
-                  >
-                    C
-                  </div>
-                  <input
-                    type="radio"
-                    id="option3"
-                    class="hidden"
-                    [value]="a.option3"
-                    [name]="a.option3"
-                    [(ngModel)]="a.givenAnswer"
-                  />
-                  <h5>{{ a.option3 }}</h5>
-                </label>
-                <!-- option 4  -->
-                <label
-                  for="option4"
-                  class="col-span-6 flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md"
-                  [ngClass]="
-                    a.givenAnswer === a.option4
-                      ? 'bg-teal-500 hover:bg-teal-500 text-white'
-                      : 'text-gray-700'
-                  "
-                >
-                  <div
-                    class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
-                  >
-                    D
-                  </div>
-                  <input
-                    type="radio"
-                    id="option4"
-                    class="hidden"
-                    [value]="a.option4"
-                    [name]="a.option4"
-                    [(ngModel)]="a.givenAnswer"
-                  />
-                  <h5>{{ a.option4 }}</h5>
-                </label>
+                </div>
               </div>
-              <hr class="my-2" />
+            </div>
+            <div>
+              <hr class="my-3" />
+              <div class="flex items-start gap-2">
+                <div
+                  class="bg-gray-600 h-8 w-16 flex justify-center items-center text-white font-semibold rounded-md"
+                >
+                  <ng-icon class="text-xl" name="heroMegaphone"></ng-icon>
+                </div>
+                <p class="text-gray-500 text-sm">
+                  Assessment will automatically submitted when timer reaches to
+                  <b>0:0</b>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-        <!-- third column  -->
-        <div class="col-span-3 flex flex-col justify-between">
-          <div>
-            <div
-              class="shadow-md bg-gray-100 rounded-md p-3 w-full flex justify-center"
-            >
-              <mat-progress-spinner
-                class="progress_bar"
-                mode="determinate"
-                [value]="(time / (this.assessments.length * 2 * 60)) * 100"
-              >
-              </mat-progress-spinner>
-            </div>
-            <div class="my-5 flex flex-row flex-wrap gap-3">
+          <div class="col-span-6 questions">
+            <div class="flex flex-col gap-3">
+              <!-- question  -->
               <div
-                *ngFor="let a of assessments; let i = index"
-                class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm text-white"
-                [ngClass]="a.givenAnswer ? 'bg-blue-500' : 'bg-gray-500'"
+                *ngFor="let a of questions; let i = index"
+                class="px-3 w-full h-full"
               >
-                {{ i + 1 }}
+                <div class="flex justify-between items-start gap-1">
+                  <h3 class="font-medium">
+                    <span class="font-semibold ml-1">{{ i + 1 }} :</span>
+                    {{ a.content }}
+                  </h3>
+                  <p class="font-semibold text-sm text-gray-500">
+                    {{ a.mark }}
+                  </p>
+                </div>
+
+                <div class="my-3 grid grid-cols-12 gap-4">
+                  <!-- option 1  -->
+                  <label
+                    for="option1_{{ i }}"
+                    class="col-span-6 flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md"
+                    [ngClass]="
+                      a.givenAnswer === a.option1
+                        ? 'bg-teal-500 hover:bg-teal-500 text-white'
+                        : 'text-gray-700'
+                    "
+                  >
+                    <div
+                      class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+                    >
+                      A
+                    </div>
+                    <input
+                      type="radio"
+                      id="option1_{{ i }}"
+                      class="hidden"
+                      [value]="a.option1"
+                      [name]="a.option1"
+                      [(ngModel)]="a.givenAnswer"
+                    />
+                    <h5>{{ a.option1 }}</h5>
+                  </label>
+                  <!-- option 2  -->
+                  <label
+                    for="option2_{{ i }}"
+                    class="col-span-6 flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md"
+                    [ngClass]="
+                      a.givenAnswer === a.option2
+                        ? 'bg-teal-500 hover:bg-teal-500 text-white'
+                        : 'text-gray-700'
+                    "
+                  >
+                    <div
+                      class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+                    >
+                      B
+                    </div>
+                    <input
+                      type="radio"
+                      id="option2_{{ i }}"
+                      class="hidden"
+                      [value]="a.option2"
+                      [name]="a.option2"
+                      [(ngModel)]="a.givenAnswer"
+                    />
+                    <h5>{{ a.option2 }}</h5>
+                  </label>
+                  <!-- option 3  -->
+                  <label
+                    for="option3_{{ i }}"
+                    class="col-span-6 flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md"
+                    [ngClass]="
+                      a.givenAnswer === a.option3
+                        ? 'bg-teal-500 hover:bg-teal-500 text-white'
+                        : 'text-gray-700'
+                    "
+                  >
+                    <div
+                      class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+                    >
+                      C
+                    </div>
+                    <input
+                      type="radio"
+                      id="option3_{{ i }}"
+                      class="hidden"
+                      [value]="a.option3"
+                      [name]="a.option3"
+                      [(ngModel)]="a.givenAnswer"
+                    />
+                    <h5>{{ a.option3 }}</h5>
+                  </label>
+                  <!-- option 4  -->
+                  <label
+                    for="option4_{{ i }}"
+                    class="col-span-6 flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md"
+                    [ngClass]="
+                      a.givenAnswer === a.option4
+                        ? 'bg-teal-500 hover:bg-teal-500 text-white'
+                        : 'text-gray-700'
+                    "
+                  >
+                    <div
+                      class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm"
+                    >
+                      D
+                    </div>
+                    <input
+                      type="radio"
+                      id="option4_{{ i }}"
+                      class="hidden"
+                      [value]="a.option4"
+                      [name]="a.option4"
+                      [(ngModel)]="a.givenAnswer"
+                    />
+                    <h5>{{ a.option4 }}</h5>
+                  </label>
+                </div>
+                <hr class="my-2" />
               </div>
             </div>
           </div>
-          <div class="flex items-center gap-3 w-full">
-            <button
-              (click)="onCancleAssessment()"
-              class="bg-red-600 py-1 rounded-md text-white font-semibold text-sm w-full"
-            >
-              Quite
-            </button>
-            <button
-              (click)="submitQuiz()"
-              class="bg-teal-600 py-1 rounded-md text-white font-semibold text-sm w-full"
-            >
-              Finish
-            </button>
+          <!-- third column  -->
+          <div class="col-span-3 flex flex-col justify-between">
+            <div>
+              <div
+                class="shadow-md bg-gray-100 rounded-md p-3 w-full flex justify-center relative"
+              >
+                <div class="absolute top-12 font-bold text-xl">
+                  {{ getParcent() }}%
+                </div>
+                <mat-progress-spinner
+                  class="progress_bar"
+                  mode="determinate"
+                  [value]="getParcent()"
+                >
+                </mat-progress-spinner>
+              </div>
+              <div class="mt-8">
+                <div class="flex items-center gap-4">
+                  <div class="h-3 w-3 rounded-sm bg-blue-500"></div>
+                  <p>Marked</p>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="h-3 w-3 rounded-sm bg-gray-500"></div>
+                  <p>Unmarked</p>
+                </div>
+              </div>
+              <div class="my-5 flex flex-row flex-wrap gap-3">
+                <div
+                  *ngFor="let a of questions; let i = index"
+                  class="h-8 w-8 border rounded-md flex justify-center items-center font-semibold text-sm text-white"
+                  [ngClass]="a.givenAnswer ? 'bg-blue-500' : 'bg-gray-500'"
+                >
+                  {{ i + 1 }}
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 w-full">
+              <button
+                (click)="onCancleAssessment()"
+                class="bg-red-600 py-1 rounded-md text-white font-semibold text-sm w-full"
+              >
+                Quite
+              </button>
+              <button
+                (click)="submitAssessment()"
+                class="bg-teal-600 py-1 rounded-md text-white font-semibold text-sm w-full"
+              >
+                Finish
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </ng-container>
   </div>
 </div>
+
+<ng-template #failureOrLoading>
+  <ng-container *ngIf="errorMessage; else loading">
+    <div class="text-red-500">
+      {{ errorMessage }}
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <div class="shadow loader">
+      <span><i class="fa-solid fa-rotate fa-spin"></i></span> &nbsp;
+      <span>Processing...</span>
+    </div>
+  </ng-template>
+</ng-template>

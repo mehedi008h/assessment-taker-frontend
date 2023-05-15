@@ -172,7 +172,7 @@
                 *ngIf="!readInstruction"
                 name="ionCheckboxOutline"
                 class="cursor-pointer"
-                [ngClass]="errorMessage ? 'text-red-500' : 'text-gray-500'"
+                [ngClass]="error ? 'text-red-500' : 'text-gray-500'"
               ></ng-icon>
               <ng-icon
                 *ngIf="readInstruction"
@@ -181,7 +181,7 @@
               ></ng-icon>
               <p
                 class="text-sm"
-                [ngClass]="errorMessage ? 'text-red-500' : 'text-gray-500'"
+                [ngClass]="error ? 'text-red-500' : 'text-gray-500'"
               >
                 Read the instruction cearfully
               </p>

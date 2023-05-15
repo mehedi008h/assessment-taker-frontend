@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Assessment } from '../models/assessment.model';
 import { PageResponse } from '../models/page.response.model';
 import { CustomHttpRespone } from '../models/custom-http-response';
+import { Question } from '../models/question.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +22,20 @@ export class AssessmentService {
     return this.http.post<Assessment>(`${this.host}/assessment`, assessment, {
       observe: 'response',
     });
+  }
+
+  //eval assessment
+  public evalAssessment(
+    questions: Question[],
+    assessmentIdentifier: string
+  ): Observable<HttpResponse<Question[]>> {
+    return this.http.post<Question[]>(
+      `${this.host}/assessment/eval-assessment/${assessmentIdentifier}`,
+      questions,
+      {
+        observe: 'response',
+      }
+    );
   }
 
   // get all assessment
